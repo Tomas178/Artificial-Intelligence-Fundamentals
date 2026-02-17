@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-import config
+from Config import config
 
 # Sukūriame bazinius folder'ius
 config.create_all_dirs()
