@@ -1,3 +1,9 @@
-\section{Išvados}
+\sectionnonum{Išvados}
 
-Čia bus pateikiamos išvados.
+Šiame laboratoriniame darbe buvo realizuotas ir ištirtas dirbtinio neurono (perceptrono) modelis dvimatėje erdvėje. Duomenys buvo sugeneruoti naudojant normaliojo skirstinio atsitiktinius dydžius: nulinės klasės – aplink centrą $(2;2)$, o pirmosios klasės – aplink centrą $(-2;-2)$, abiems klasėms naudojant standartinį nuokrypį $\sigma = 0{,}8$. Sugeneruoti duomenys yra tiesiškai atskiriami.
+
+Svorių ir poslinkių paieška buvo atlikta atsitiktinės paieškos metodu, generuojant parametrų rinkinius $(w_1, w_2, b)$ iš tolygaus skirstinio intervale $[10;10]$. Slenkstinei aktyvacijos funkcijai rasti 3 tinkami rinkiniai per 8 iteracijas, o sigmoidinei – per 7 iteracijas. Tai rodo, jog duomenys yra lengvai atskiriami ir tinkamų parametrų erdvė yra pakankamai didelė.
+
+Tiek slenkstinė \eqref{eq:step}, tiek sigmoidinė \eqref{eq:sigmoid} aktyvacijos funkcijos leido pasiekti $100\ \%$ klasifikavimo tikslumą visuose rastuose rinkiniuose. Tai patvirtina, kad abiejų tipų aktyvacijos funkcijos yra tinkamos tiesiškai atskiriamų duomenų klasifikavimui.
+
+Sudaryta skiriančių tiesių vizualizacija parodė, kad skirtingi svorių rinkiniai gali apibrėžti skirtingas skiriančias tieses, tačiau visos jos sėkmingai atskiria abi klases. Svorių vektoriai, būdami statmeni (ortogonalūs) skiriamajam paviršiui, patvirtina geometrinę perceptrono interpretaciją – svoriai nustato sprendimo ribos orientacija erdvėje.
