@@ -1,10 +1,21 @@
 \section{Galutinis rezultatas}
 
-Čia bus pateikiamas gautas grafikas (žr.~\ref{fig:galutinis rezultatas} pav.).
+\ref{fig:neuronas} paveikslėlyje pavaizduoti visi 30 duomenų taškų, trys klases skiriančios tiesės bei joms atitinkantys svorių vektoriai.
+
+Mėlyni taškai žymi nulinę klasė, raudoni – pirmąją. Kiekviena skirianti tiesė atitinka vieną rastą svorių ir poslinkio rinkinį $(w_1, w_2, b)$ ir apibrėžiama lygtimi \eqref{eq:a}. Svorių vektoriai $\mathbf{w} = (w_1, w_2)$ pavaizduoti rodyklėmis iš koordinačių pradžios taško ir yra statmeni atitinkamoms skiriančioms tiesėms. Vektorių kryptis nurodo, kurioje pusėje nuo tiesės klasifikuojami pirmosios klasės taškai.
+
+\ref{fig:neuronas} paveikslėlyje pateiktos trys skiriančios tiesės:
+\begin{itemize}
+    \item \textbf{Žalia} – rinkinys 1: $1{,}03 \cdot x_1 + 4{,}39 \cdot x_2 -1{,}54 = 0$.
+    \item \textbf{Violetinė} – rinkinys 2: $9{,}62 \cdot x_1 + 3{,}7 \cdot x_2 - 0{,}38 = 0$.
+    \item \textbf{Geltona} – rinkinys 3: $6{,}99 \cdot x_1 + 4{,}49 + 2{,}22 = 0$.
+\end{itemize}
+
+Visos trys tiesės sėkmingai atskiria klases. Tai patvirtina, kad duomenys yra tiesiškai atskiriami.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{../grafikai/neuronas.png}
+    \includegraphics[width=0.7\textwidth]{../grafikai/neuronas.png}
     \caption{Duomenų taškai, klases skiriančios tiesės ir svorių vektoriai}
-    \label{fig:galutinis rezultatas}
+    \label{fig:neuronas}
 \end{figure}
