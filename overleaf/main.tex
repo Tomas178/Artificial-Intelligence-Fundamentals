@@ -21,43 +21,26 @@
 
 \usepackage{biblatex}
 \bibliography{bibliografija}
-%% norint pakeisti bibliografijos šaltinių numeravimą (skaitiniu arba raidiniu), pakeitimus atlikti VUMIFTemplateClass.cls 150 eilutėje
 
 % Author's MACROS
-\newcommand{\EE}{\mathbb{E}\,} % Mean
-\newcommand{\ee}{{\mathrm e}}  % nice exponent
+\newcommand{\EE}{\mathbb{E}\,}
+\newcommand{\ee}{{\mathrm e}}
 \newcommand{\RR}{\mathbb{R}}
 
 
-\studijuprograma{\{Studijų programos\}} %Studijų programą įrašyti kilmininko linksniu (pavyzdžiui – Programų sistemų, Finansų ir draudimų matematikos ir t. t.)
-\darbotipas{\{Darbo tipas\}} % Bakalauro baigiamasis darbas arba magistro baigiamasis darbas
+\studijuprograma{Informacinių sistemų inžinerijos}
+\darbotipas{Laboratorinis darbas}
 \darbopavadinimas{Dirbtinis neuronas (perceptronas)}
-\darbopavadinimasantras{Artifical neuron (perceptron)}
+\darbopavadinimasantras{Artificial neuron (perceptron)}
 \autorius{Tomas Petronis}
 
-%Autorių gali būti ir daugiau, tuo atveju, kiekvienas autorius rašomas iš naujos eilutės, ir pridedamas titulinis.tex arba dvigubasTitulinis.tex dokumentuose
-%\antrasautorius{Vardas Pavardė} %Jei toks yra, kitu atveju ištrinti
-
 \vadovas{pedagoginis/mokslinis vardas Vardas Pavardė}
-\recenzentas{pedagoginis/mokslinis vardas Vardas Pavardė} %Jei toks yra žinomas, kitu atveju ištrinti
-\moksliniskonsultantas{pedagoginis/mokslinis vardas Vardas Pavardė} %Jei toks yra žinomas, kitu atveju ištrinti
 
 \begin{document}
 \selectlanguage{lithuanian}
 
 \onehalfspacing
-\input{sections/header}
-
-%% Padėkų skyrius
-\sectionnonumnocontent{Padėka}
-Darbo autorius dėkoja Vilniaus universiteto Matematikos ir informatikos fakulteto Informacinių technologijų atviros prieigos centrui už suteiktus našiųjų skaičiavimų (angl. High Performance Computing, HPC) išteklius šio darbo tyrimui atlikti.
-%%
-%%
-%%      Jei baigiamojo darbo tyrimui atlikti naudojote MIF suteikiamus IT išteklius (CPU-h, GPU-h, kitus IT resursus), padėką palikite, jei nenaudojote - galite ištrinti.
-%%
-%%
-
-Čia taip pat galima pridėti padėkas įvairiems kitiems dalykams, pavyzdžiui: vadovui, universitetui, įmonei ir t. t.
+\input{sections/titulinis}
 
 %%Santrauka
 \selectlanguage{lithuanian}
