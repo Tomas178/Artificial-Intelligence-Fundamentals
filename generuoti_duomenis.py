@@ -9,11 +9,13 @@ config.create_all_dirs()
 # Dvi klasės po 15 taškų
 np.random.seed(42)
 
+STANDARD_DEVIATION = 0.8
+
 # Klasė 0: taškai aplink centrą (-2, -2)
-class_0 = np.random.randn(15, 2) * 0.8 + np.array([-2, -2])
+class_0 = np.random.randn(15, 2) * STANDARD_DEVIATION + np.array([-2, -2])
 
 # Klasė 1: taškai aplink centrą (2, 2)
-class_1 = np.random.randn(15, 2) * 0.8 + np.array([2, 2])
+class_1 = np.random.randn(15, 2) * STANDARD_DEVIATION + np.array([2, 2])
 
 # Sujungiame duomenis
 X = np.vstack([class_0, class_1])
