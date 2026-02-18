@@ -10,6 +10,7 @@
 \usepackage{color,algorithm,algorithmic}
 \usepackage[nottoc]{tocbibind}
 \usepackage{tocloft}
+\usepackage{caption}
 
 \usepackage{titlesec}
 \newcommand{\sectionbreak}{\clearpage}
@@ -34,28 +35,19 @@
 \darbopavadinimasantras{Artificial neuron (perceptron)}
 \autorius{Tomas Petronis}
 
-\vadovas{pedagoginis/mokslinis vardas Vardas Pavardė}
+\vadovas{dr. Viktor Medvedev}
 
 \begin{document}
 \selectlanguage{lithuanian}
 
 \onehalfspacing
 \input{sections/titulinis}
-
-%%Santrauka
-\selectlanguage{lithuanian}
-\sectionnonum{Santrauka}
-
-Darbo santrauka.\\
-
-\textbf{Raktiniai žodžiai:} čia surašomi su darbu susiję raktiniai žodžiai, \textit{\textbf{minimalus raktinių žodžių kiekis - 3}}, tačiau jų gali būti ir daugiau.
-
-
-\sectionnonum{Summary}
-
-Summary in english.\\
-
-\textbf{Keywords:} work related keywords, with a \textit{\textbf{minimum of 3 keywords}}, but can be more.
+\input{sections/uzduoties_tikslas}
+\input{sections/sugeneruoti_duomenys/main}
+\input{sections/programos_kodas/main}
+\input{sections/svoriai_poslinkiai/main}
+\input{sections/galutinis_rezultatas}
+\input{sections/isvados}
 
 
 \singlespacing
