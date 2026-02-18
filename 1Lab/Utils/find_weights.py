@@ -5,13 +5,14 @@ from numpy.typing import NDArray
 from Utils.check_accuracy import check_accuracy
 
 MAX_ITERATIONS_COUNT = 1_000_000
+COLLECTIONS_COUNT = 3
 
 
 def find_weights(
 	X: NDArray[np.floating],
 	y: NDArray[np.int_],
 	activation: ActivationFunction,
-	count: int = 3,
+	count: int = COLLECTIONS_COUNT,
 	search_range: tuple[float, float] = (-10.0, 10.0),
 	max_iterations: int = MAX_ITERATIONS_COUNT,
 ) -> list[tuple[float, float, float]]:

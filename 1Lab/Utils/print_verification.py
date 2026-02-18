@@ -11,18 +11,16 @@ def print_verification(
 	found_step: list[tuple[float, float, float]],
 	found_sigmoid: list[tuple[float, float, float]],
 ) -> None:
-	print('\n' + '=' * 60)
 	print('PATIKRINIMAS')
-	print('=' * 60)
 
 	print('\nSlenkstinė aktyvacijos funkcija:')
 	for i, (w1, w2, b) in enumerate(found_step):
-		preds: NDArray[np.int_] = perceptron(X, w1, w2, b, ActivationFunction.STEP)
-		acc: float = float(np.mean(preds == y)) * 100
-		print(f'  Rinkinys {i + 1}: w1={w1:.4f}, w2={w2:.4f}, b={b:.4f} → tikslumas: {acc:.1f}%')
+		predictions: NDArray[np.int_] = perceptron(X, w1, w2, b, ActivationFunction.STEP)
+		accuracy: float = float(np.mean(predictions == y)) * 100
+		print(f'Rinkinys {i + 1}: w1={w1:.4f}, w2={w2:.4f}, b={b:.4f} → tikslumas: {accuracy:.1f}%')
 
 	print('\nSigmoidinė aktyvacijos funkcija:')
 	for i, (w1, w2, b) in enumerate(found_sigmoid):
-		preds = perceptron(X, w1, w2, b, ActivationFunction.SIGMOID)
-		acc = float(np.mean(preds == y)) * 100
-		print(f'  Rinkinys {i + 1}: w1={w1:.4f}, w2={w2:.4f}, b={b:.4f} → tikslumas: {acc:.1f}%')
+		predictions = perceptron(X, w1, w2, b, ActivationFunction.SIGMOID)
+		accuracy = float(np.mean(predictions == y)) * 100
+		print(f'Rinkinys {i + 1}: w1={w1:.4f}, w2={w2:.4f}, b={b:.4f} → tikslumas: {accuracy:.1f}%')

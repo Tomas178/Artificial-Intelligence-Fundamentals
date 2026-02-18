@@ -15,5 +15,5 @@ def check_accuracy(
 ) -> bool:
 	"""Returns accuracy."""
 
-	predictions: NDArray[np.int_] = perceptron(X, w1, w2, b, activation)
+	predictions = perceptron(X, w1, w2, b, activation)
 	return bool(np.all(predictions == y))

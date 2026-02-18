@@ -36,11 +36,11 @@ def plot_results(
 	)
 
 	colors: list[str] = ['green', 'purple', 'orange']
-	x_range: NDArray[np.floating] = np.linspace(-5, 5, 300)
+	x_range = np.linspace(-5, 5, 300)
 
 	for i, (w1, w2, b) in enumerate(found_step):
 		if abs(w2) > 1e-9:
-			y_line: NDArray[np.floating] = -(w1 * x_range + b) / w2
+			y_line = -(w1 * x_range + b) / w2
 			ax.plot(
 				x_range,
 				y_line,
@@ -58,14 +58,14 @@ def plot_results(
 			)
 
 		if abs(w2) > 1e-9:
-			start_x: float = 0.0
-			start_y: float = -b / w2
+			start_x = 0.0
+			start_y = -b / w2
 		else:
 			start_x = -b / w1
 			start_y = 0.0
 
 		w_vec: NDArray[np.floating] = np.array([w1, w2])
-		w_norm: float = float(np.linalg.norm(w_vec))
+		w_norm = float(np.linalg.norm(w_vec))
 		w_unit: NDArray[np.floating] = w_vec / w_norm * 1.5
 
 		ax.annotate(
