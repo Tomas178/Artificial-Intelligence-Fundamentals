@@ -3,10 +3,10 @@
 
 Svorių $w_1$, $w_2$ ir poslinkio $w_0$ reikšmės buvo ieškomas atsitiktinės paieškos (angl.~\textit{random search}) metodu. Kiekvienos iteracijos metu trys parametrai $w_1$, $w_2$, $w_0$ buvo generuojami atsitiktinai iš tolygaus skirstinio intervale $[-10{,}0;\ 10{,}0]$. Sugeneruotas rinkinys $(w_1, w_2, w_0)$ buvo laikomas tinkamu, jei perceptronas su tais parametrais teisingai klasifikavo visus 30 duomenų taškų, t.~y. pasiekė $100\ \%$ tikslumą.
 
-Paieška buvo vykdoma tol, kol surasti 3 tinkami rinkiniai arba pasiektas maksimalus iteracijų skaičius $N = 1\,000\,000$. Perceptrono išėjimas skaičiuojamas pagal formulę \eqref{eq:a}:
+Paieška buvo vykdoma tol, kol surasti 3 tinkami rinkiniai arba pasiektas maksimalus iteracijų skaičius $N = 1\,000\,000$. Perceptrono išėjimas skaičiuojamas pagal formulę~\eqref{eq:a}:
 \input{1Lab/overleaf/sections/svoriai_poslinkiai/subsections/formulas/a}
 
-Naudotos dvi aktyvacijos funkcijos (žr.~\ref{eq:step} – ~\ref{eq:sigmoid} formules):
+Naudotos dvi aktyvacijos funkcijos (žr.~\ref{eq:step}, \ref{eq:sigmoid} formules):
 \begin{itemize}
     \item \textbf{Slenkstinė} (angl.~\textit{step}):
         \input{1Lab/overleaf/sections/svoriai_poslinkiai/subsections/formulas/step}
@@ -14,4 +14,4 @@ Naudotos dvi aktyvacijos funkcijos (žr.~\ref{eq:step} – ~\ref{eq:sigmoid} for
         \input{1Lab/overleaf/sections/svoriai_poslinkiai/subsections/formulas/sigmoid}
 \end{itemize}
 
-Slenkstinės funkcijos paieška pradėta su atsitiktinių skaičių generatoriaus (\texttt{sėkla=123}), o sigmoidinės – (\texttt{sėkla=456}).
+Slenkstinės funkcijos paieška pradėta su atsitiktinių skaičių generatoriaus (\texttt{sėkla=123}), o sigmoidinės – (\texttt{seed=456}).
