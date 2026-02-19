@@ -1,4 +1,27 @@
-\subsection{Dirbtinio neurono skačiavimo funkcija}
+\subsection{Dirbtinio neurono skaičiavimo funkcija}
 \label{subsec:perceptron}
 
-Šiame poskyryje bus pateikiamas perceptrono funkcija bei komentarai.
+Parametrai:
+\begin{itemize}
+    \item $X$ – masyvas iš $x_1$ ir $x_2$ elementų.
+    \item $w_1$ – pirmosios įvesties svoris.
+    \item $w_2$ – antrosios įvesties svoris.
+    \item $w_0$ – poslinkis (angl.~\textit{bias}).
+    \item $activation$ – aktyvacijos funkcijos pasirinkimas.
+\end{itemize}
+
+Funkcijos veikimo principas (žr.~\ref{fig:perceptron_function} pav.):
+\begin{enumerate}
+    \item Apskaičiuojama svertinė suma pagal \eqref{eq:a} formulę.
+    \item Rezultatas $a$ perduodamas aktyvacijos funkcijai.
+    \item Jei $activation = \text{„step“}$ – taikoma slenkstinė funkcija \eqref{eq:step}, grąžinamas $\hat{y}$.
+    \item Jei $activation = \text{„sigmoid“}$ – taikoma sigmoidinė funkcija \eqref{eq:sigmoid}, grąžinamas $y$.
+    \item Grąžinamas rezultatas.
+\end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{perceptron_function.png}
+    \caption{Perceptrono veikimo funkcija}
+    \label{fig:perceptron_function}
+\end{figure}
