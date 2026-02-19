@@ -17,28 +17,24 @@ config.set_lab_dir(str(Path(__file__).parent))
 
 
 def main():
-	# Gauname pradinius duomenis
 	df = pd.read_csv(config.get_shared_data_path(config.starting_points_data_file))
 
 	X: NDArray[np.floating] = df[['x1', 'x2']].values
-	y: NDArray[np.int_] = df['klase'].values.astype(int)
+	y: NDArray[np.int_] = df['klase'].values
 
 	print('Duomenys sėkmingai nuskaityti')
 	print(tabulate(df, headers='keys', tablefmt='fancy_grid', showindex=True))
 
-	# Svorių ir poslinkio paieška – SLENKSTINĖ aktyvacijos funkcija
 	print('Svorių paieška (slenkstinė aktyvacijos f-ja)')
 
 	np.random.seed(123)
 	found_step: list[tuple[float, float, float]] = find_weights(X, y, ActivationFunction.STEP)
 
-	# Svorių ir poslinkio paieška – SIGMOIDINĖ aktyvacijos funkcija
 	print('Svorių paieška (sigmoidinė aktyvacijos f-ja)')
 
 	np.random.seed(456)
 	found_sigmoid: list[tuple[float, float, float]] = find_weights(X, y, ActivationFunction.SIGMOID)
 
-	# 5 & 6. Vizualizacija
 	config.create_graphics_dir()
 	graphics_file_path: str = config.get_graphics_path('neuronas.png')
 
@@ -46,7 +42,6 @@ def main():
 
 	print(f'Grafikas išsaugotas: {graphics_file_path}')
 
-	# Patikrinimas
 	print_verification(X, y, found_step, found_sigmoid)
 
 

@@ -13,7 +13,7 @@ def check_accuracy(
 	b: float,
 	activation: ActivationFunction = ActivationFunction.STEP,
 ) -> bool:
-	"""Returns accuracy."""
+	"""Checks if all prediction by perceptron are correct and returns either true or false."""
 
 	predictions = perceptron(X, w1, w2, b, activation)
 	return bool(np.all(predictions == y))
