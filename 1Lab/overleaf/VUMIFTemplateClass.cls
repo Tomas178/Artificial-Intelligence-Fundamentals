@@ -142,7 +142,7 @@
     giveninits=true,
     % nustatomas citavimo stilius
     %style=numeric, % skaitinis numeravimas
-    style=alphabetic, % raidinis numeravimas
+    style=numeric, % raidinis numeravimas
     abbreviate=false,
     minalphanames=3,
     maxalphanames=3,
