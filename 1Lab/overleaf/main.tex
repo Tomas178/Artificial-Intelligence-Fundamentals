@@ -56,32 +56,5 @@
 
 \singlespacing
 
-\listoffigures 
-
-\listoftables
-
-\section{Programinio kodo pateikimas}
-Šiame skyriuje pateikiamas programinio kodo pateikimo būdas rašto darbe.
-
-\subsection{Algoritmai}
-
-Algoritmai, lygiai taip pat, kaip ir paveikslėliai ar lentelės, yra numeruojami.
-Juos būtina paminėti tekste, pvz.:~\ref{alg:gd} naudojamas surasti minimalią funkcijos $\mathcal{L}$ reikšmę.
-
-\begin{algorithm}[h]
-\caption{Gradientinio nusileidimo pseudokodas}\label{alg:gd}
-\begin{algorithmic}[1]
-    \STATE \textcolor{blue}{\texttt{\textbf{\# Darome prielaidą, kad $\mathcal{L}$ apibrėžtas tekste}}}
-        \STATE Įeitis: $\mathcal{D}$ -- duomenų rinkinys
-        \STATE Įeitis: $\theta_0$ -- parametrų atsitiktinių reikšmių inicializavimas
-        \STATE Įeitis: $\gamma$ -- žingsnio dydis, mokymosi greitis (angl.~\textit{learning rate}, \textit{step size})
-        \STATE Įeitis: $m$ -- epochų skaičius
-        \FOR{$i = 1, 2, \dots, m$}
-            \STATE $\theta_i \coloneq \theta_{i-1} - \gamma \nabla_\theta \mathcal{L}(\mathcal{D}, \theta_{i-1})$
-            \STATE \textcolor{blue}{\texttt{\textbf{\# Funkcijos $\mathcal{L}$ išvestinė suskaičiuojama automatiškai, autograd pagalba}}}
-        \ENDFOR
-\end{algorithmic}
-\end{algorithm}
-
 \printbibliography[title = {Šaltiniai}]
 \end{document}
