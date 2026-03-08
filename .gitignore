@@ -2,4 +2,6 @@ venv/
 .ruff_cache
 __pycache__
 
+.vscode
+
 Sablonas.tex
