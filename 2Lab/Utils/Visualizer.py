@@ -94,17 +94,16 @@ class Visualizer:
 
 		self._save(filename)
 
-	def plot_bgd_vs_sgd(self, bgd_neuron: SigmoidNeuron, sgd_neuron: SigmoidNeuron, filename: str):
+	def plot_bgd_vs_sgd_error(
+		self, bgd_neuron: SigmoidNeuron, sgd_neuron: SigmoidNeuron, filename='bgd_vs_sgd_error.png'
+	):
 		c = self._colors(4)
-		_, axes = plt.subplots(2, 2, figsize=(16, 12))
-
 		epochs_bgd = range(1, bgd_neuron.epochs_run + 1)
 		epochs_sgd = range(1, sgd_neuron.epochs_run + 1)
 
-		axes[0][0].plot(
-			epochs_bgd, bgd_neuron.train_errors, label='BGD Train', color=c[0], linewidth=2
-		)
-		axes[0][0].plot(
+		plt.figure(figsize=(10, 6))
+		plt.plot(epochs_bgd, bgd_neuron.train_errors, label='BGD Train', color=c[0], linewidth=2)
+		plt.plot(
 			epochs_bgd,
 			bgd_neuron.validation_errors,
 			label='BGD Val',
@@ -112,10 +111,8 @@ class Visualizer:
 			linestyle='--',
 			linewidth=2,
 		)
-		axes[0][0].plot(
-			epochs_sgd, sgd_neuron.train_errors, label='SGD Train', color=c[2], linewidth=2
-		)
-		axes[0][0].plot(
+		plt.plot(epochs_sgd, sgd_neuron.train_errors, label='SGD Train', color=c[2], linewidth=2)
+		plt.plot(
 			epochs_sgd,
 			sgd_neuron.validation_errors,
 			label='SGD Val',
@@ -123,16 +120,28 @@ class Visualizer:
 			linestyle='--',
 			linewidth=2,
 		)
-		axes[0][0].set_xlabel('Epoch')
-		axes[0][0].set_ylabel('MSE')
-		axes[0][0].set_title('Error: BGD vs SGD')
-		axes[0][0].legend()
-		axes[0][0].grid(True, alpha=0.3)
+		plt.xlabel('Epoch')
+		plt.ylabel('MSE')
+		plt.title('Error: BGD vs SGD')
+		plt.legend()
+		plt.grid(True, alpha=0.3)
+		self._save(filename)
 
-		axes[0][1].plot(
+	def plot_bgd_vs_sgd_accuracy(
+		self,
+		bgd_neuron: SigmoidNeuron,
+		sgd_neuron: SigmoidNeuron,
+		filename='bgd_vs_sgd_accuracy.png',
+	):
+		c = self._colors(4)
+		epochs_bgd = range(1, bgd_neuron.epochs_run + 1)
+		epochs_sgd = range(1, sgd_neuron.epochs_run + 1)
+
+		plt.figure(figsize=(10, 6))
+		plt.plot(
 			epochs_bgd, bgd_neuron.train_accuracies, label='BGD Train', color=c[0], linewidth=2
 		)
-		axes[0][1].plot(
+		plt.plot(
 			epochs_bgd,
 			bgd_neuron.validation_accuracies,
 			label='BGD Val',
@@ -140,10 +149,10 @@ class Visualizer:
 			linestyle='--',
 			linewidth=2,
 		)
-		axes[0][1].plot(
+		plt.plot(
 			epochs_sgd, sgd_neuron.train_accuracies, label='SGD Train', color=c[2], linewidth=2
 		)
-		axes[0][1].plot(
+		plt.plot(
 			epochs_sgd,
 			sgd_neuron.validation_accuracies,
 			label='SGD Val',
@@ -151,31 +160,48 @@ class Visualizer:
 			linestyle='--',
 			linewidth=2,
 		)
-		axes[0][1].set_xlabel('Epoch')
-		axes[0][1].set_ylabel('Accuracy')
-		axes[0][1].set_title('Accuracy: BGD vs SGD')
-		axes[0][1].legend()
-		axes[0][1].grid(True, alpha=0.3)
-		axes[0][1].set_ylim([0.5, 1.05])
+		plt.xlabel('Epoch')
+		plt.ylabel('Accuracy')
+		plt.title('Accuracy: BGD vs SGD')
+		plt.legend()
+		plt.grid(True, alpha=0.3)
+		plt.ylim([0.5, 1.05])
+		self._save(filename)
 
+	def plot_bgd_vs_sgd_val_accuracy(
+		self,
+		bgd_neuron: SigmoidNeuron,
+		sgd_neuron: SigmoidNeuron,
+		filename='bgd_vs_sgd_val_accuracy.png',
+	):
+		c = self._colors(4)
 		methods = ['BGD', 'SGD']
 		val_accs = [bgd_neuron.validation_accuracies[-1], sgd_neuron.validation_accuracies[-1]]
-		axes[1][0].bar(methods, val_accs, color=[c[0], c[2]])
-		axes[1][0].set_ylabel('Validation Accuracy')
-		axes[1][0].set_title('Final Validation Accuracy')
-		axes[1][0].set_ylim([0.8, 1.02])
-		axes[1][0].grid(True, alpha=0.3, axis='y')
 
+		plt.figure(figsize=(10, 6))
+		plt.bar(methods, val_accs, color=[c[0], c[2]])
+		plt.ylabel('Validation Accuracy')
+		plt.title('Final Validation Accuracy')
+		plt.ylim([0.8, 1.02])
+		plt.grid(True, alpha=0.3, axis='y')
+		self._save(filename)
+
+	def plot_bgd_vs_sgd_time(
+		self, bgd_neuron: SigmoidNeuron, sgd_neuron: SigmoidNeuron, filename='bgd_vs_sgd_time.png'
+	):
+		c = self._colors(4)
+		methods = ['BGD', 'SGD']
 		times = [bgd_neuron.training_time, sgd_neuron.training_time]
-		axes[1][1].bar(methods, times, color=[c[0], c[2]])
-		axes[1][1].set_ylabel('Time (seconds)')
-		axes[1][1].set_title('Training Time')
-		axes[1][1].grid(True, alpha=0.3, axis='y')
 
+		plt.figure(figsize=(10, 6))
+		plt.bar(methods, times, color=[c[0], c[2]])
+		plt.ylabel('Time (seconds)')
+		plt.title('Training Time')
+		plt.grid(True, alpha=0.3, axis='y')
 		self._save(filename)
 
 	def plot_time_comparison(
-		self, bgd_times: list, sgd_times: list, epoch_counts: list, filename: str
+		self, bgd_times: list, sgd_times: list, epoch_counts: list, filename='time_comparison.png'
 	):
 		c = self._colors(2)
 		x = np.arange(len(epoch_counts))

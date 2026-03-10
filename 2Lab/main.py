@@ -52,7 +52,10 @@ def main():
 	)
 
 	# BGD vs SGD palyginimas
-	visualizer.plot_bgd_vs_sgd(bgd_neuron, sgd_neuron, 'bgd_vs_sgd.png')
+	visualizer.plot_bgd_vs_sgd_error(bgd_neuron, sgd_neuron)
+	visualizer.plot_bgd_vs_sgd_accuracy(bgd_neuron, sgd_neuron)
+	visualizer.plot_bgd_vs_sgd_val_accuracy(bgd_neuron, sgd_neuron)
+	visualizer.plot_bgd_vs_sgd_time(bgd_neuron, sgd_neuron)
 
 	# Mokymosi greičio tyrimas
 	learning_rates = [0.01, 0.1, DEFAULT_LEARNING_RATE, 0.9]
@@ -95,7 +98,7 @@ def main():
 
 		print(f'Epochs={ep}: BGD={bgd.training_time:.4f}s, SGD={sgd.training_time:.4f}s')
 
-	visualizer.plot_time_comparison(bgd_times, sgd_times, epoch_counts, 'time_comparison.png')
+	visualizer.plot_time_comparison(bgd_times, sgd_times, epoch_counts)
 
 
 if __name__ == '__main__':
