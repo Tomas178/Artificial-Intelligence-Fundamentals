@@ -1,0 +1,10 @@
+\subsubsection{Prognozavimas}
+\label{subsubsec:prognozavimas}
+
+Neurono išėjimas apskaičiuojamas dviem žingsniais:
+\begin{enumerate}
+    \item Apskaičiuojama svertinė suma: \input{2Lab/overleaf/formulas/weighted_sum}
+    \item Rezultatas praleidžiamas per sigmoidinę aktyvacijos funkciją: \input{2Lab/overleaf/formulas/sigmoid_activation}
+\end{enumerate}
+
+Kadangi sigmoidinės funkcijos išėjimas yra intervale $(0; 1)$, klasifikuojant reikšmė suapvalinama iki artimiausio sveiko skaičiaus ($0$ arba $1$).
