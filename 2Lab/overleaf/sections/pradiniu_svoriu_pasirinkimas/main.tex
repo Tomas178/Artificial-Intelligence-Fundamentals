@@ -1,0 +1,13 @@
+\section{Pradinių svorių pasirinkimas}
+\label{sec:pradiniu_svoriu_pasirinkimas}
+
+Pradinės svorių (angl.~\textit{weights}) ir poslinkio (angl.~\textit{bias}) reikšmės buvo parinktos atsitiktinai iš tolygaus skirstinio intervale $[-0{,}5;\ 0{,}5]$. Kadangi duomenų aibėje yra $9$ požymiai, tai buvo sugeneruoti $9$ svoriai $w_1, w_2, \dots, w_9$ ir vienas poslinkis $w_0$.
+
+Maži atsitiktiniai pradiniai svoriai yra svarbūs dėl kelių priežasčių:
+\begin{itemize}
+    \item Jei visi svoriai būtų vienodi (pvz., $0$), neuronas negalėtų efektyviai mokytis, nes visi gradientai būtų simetriški.
+    \item Per didelės pradinės reikšmės gali nukreipti sigmoidinės funkcijos išėjimą į prisotinimo zonas (arti $0$ arba $1$), kur gradientai yra labai maži ir mokymas tampa lėtas.
+    \item Maži atsitiktiniai svoriai užtikrina, kad sigmoidinės funkcijos išėjimas pradžioje yra arti $0{,}5$, kur gradientai yra didžiausi ir mokymas vyksta efektyviausiai.
+\end{itemize}
+
+Atsitiktinių skaičių generatoriaus pradinė reikšmė (angl. \textit{seed}) buvo fiksuota ($seed = 42$), kad eksperimentų rezultatai būtų atkartojami.
