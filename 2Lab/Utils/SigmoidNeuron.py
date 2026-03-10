@@ -36,7 +36,7 @@ class SigmoidNeuron:
 		return np.round(self.predict(X)).astype(int)
 
 	def _compute_error(self, y_pred: np.ndarray, y_true: np.ndarray) -> float:
-		return np.sum((y_true - y_pred) ** 2)
+		return np.sum((y_true - y_pred) ** 2) / len(y_true)
 
 	def _compute_accuracy(self, y_pred: np.ndarray, y_true: np.ndarray) -> float:
 		return np.mean(np.round(y_pred).astype(int) == y_true)
@@ -79,19 +79,18 @@ class SigmoidNeuron:
 				grad = (y_i - t_i) * y_i * (1 - y_i)
 
 				if stochastic:
-					# Svoriai atnaujinami po kiekvieno pavyzdžio
 					self.weights -= self.learning_rate * grad * x_i
 					self.bias -= self.learning_rate * grad
 				else:
-					# Gradientai kaupiami per visą epochą
 					gradient_sum_w += grad * x_i
 					gradient_sum_b += grad
 
 				total_error += (t_i - y_i) ** 2
 
+			m = len(X_shuffled)
+			total_error = total_error / m
+
 			if not stochastic:
-				# Svoriai atnaujinami vieną kartą per epochą
-				m = len(X_shuffled)
 				self.weights -= self.learning_rate * (gradient_sum_w / m)
 				self.bias -= self.learning_rate * (gradient_sum_b / m)
 
@@ -101,9 +100,11 @@ class SigmoidNeuron:
 		self.epochs_run = epoch
 		self.training_time = time.time() - start_time
 
+	# Paketinis gradientinis nusileidimas
 	def train_batch(self, X_train, y_train, X_val, y_val):
 		self._train(X_train, y_train, X_val, y_val, stochastic=False)
 
+	# Stochastinis gradientinis nusileidimas
 	def train_stochastic(self, X_train, y_train, X_val, y_val):
 		self._train(X_train, y_train, X_val, y_val, stochastic=True)
 
