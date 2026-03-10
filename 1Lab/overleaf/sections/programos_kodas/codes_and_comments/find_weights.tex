@@ -1,4 +1,25 @@
 \subsection{Svorių ieškojimo funkcija}
 \label{subsec:find_weights}
 
-Šiame poskyryje bus pateikiama svorių ieškojimo funkcija bei komentarai.
+Konstantos:
+\begin{itemize}
+    \item $MAX\_ITERATIONS\_COUNT=1\_000\_000$ – Maksimalus leistinas iteracijų kiekis.
+    \item $COLLECTIONS\_COUNT=3$ – Reikalingas rinkinių kiekis.
+    \item $DEFAULT\_SEARCH\_RANGE=(-10, 10)$ – svorių bei poslinkių reikšmės yra generuojamos nurodytame intervale.
+\end{itemize}
+
+Funkcijos veikimo principas (žr.~\ref{fig:find_weights_function} pav.):
+\begin{enumerate}
+    \item Iteruojama tol, kol randamas reikalingas kiekis rinkinių ($count$) arba pasiekiamas limitas leistinų iteracijų kiekio ($max\_iterations$).
+    \item Visiems $w_1$, $w_2$ bei $w_0$ yra priskiriamos atsitiktinės reikšmės iš intervalo $search\_range$.
+    \item Sugeneruotos $w_1$, $w_2$ ir $w_0$ reikšmės perduodamos $check_accuracy$ funkcijai (žr.~\ref{subsec:check_accuracy} skyrelį).
+    \item Jeigu $check\_accuracy$ funkcija grąžina tiesą (angl.~\textit{True}), tai sugeneruotos $w_1$, $w_2$ ir $w_0$ reikšmės prijungiamos prie rinkinių masyvo $found$.
+    \item Prasideda sekanti iteracija.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{1Lab/overleaf/images/find_weights.png}
+    \caption{Svorių ieškojimo funkcija}
+    \label{fig:find_weights_function}
+\end{figure}
