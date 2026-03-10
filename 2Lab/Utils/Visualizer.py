@@ -1,14 +1,19 @@
 import os
 
+import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 from Utils.SigmoidNeuron import SigmoidNeuron
 
 
 class Visualizer:
-	def __init__(self, output_dir: str = 'visualizations'):
+	def __init__(self, output_dir: str = 'visualizations', colormap: str = 'viridis'):
 		self.output_dir = output_dir
+		self.cmap = cm.get_cmap(colormap)
 		os.makedirs(output_dir, exist_ok=True)
+
+	def _colors(self, n: int) -> list:
+		return [self.cmap(i / max(n - 1, 1)) for i in range(n)]
 
 	def _save(self, filename: str):
 		filepath = os.path.join(self.output_dir, filename)
@@ -18,11 +23,14 @@ class Visualizer:
 		print(f'Saved: {filepath}')
 
 	def plot_error(self, neuron: SigmoidNeuron, label: str, filename: str):
+		c = self._colors(2)
 		epochs = range(1, neuron.epochs_run + 1)
 
 		plt.figure(figsize=(10, 6))
-		plt.plot(epochs, neuron.train_errors, label='Training Error', linewidth=2)
-		plt.plot(epochs, neuron.validation_errors, label='Validation Error', linewidth=2)
+		plt.plot(epochs, neuron.train_errors, label='Training Error', color=c[0], linewidth=2)
+		plt.plot(
+			epochs, neuron.validation_errors, label='Validation Error', color=c[1], linewidth=2
+		)
 		plt.xlabel('Epoch')
 		plt.ylabel('MSE')
 		plt.title(f'Error vs Epochs - {label}')
@@ -31,11 +39,20 @@ class Visualizer:
 		self._save(filename)
 
 	def plot_accuracy(self, neuron: SigmoidNeuron, label: str, filename: str):
+		c = self._colors(2)
 		epochs = range(1, neuron.epochs_run + 1)
 
 		plt.figure(figsize=(10, 6))
-		plt.plot(epochs, neuron.train_accuracies, label='Training Accuracy', linewidth=2)
-		plt.plot(epochs, neuron.validation_accuracies, label='Validation Accuracy', linewidth=2)
+		plt.plot(
+			epochs, neuron.train_accuracies, label='Training Accuracy', color=c[0], linewidth=2
+		)
+		plt.plot(
+			epochs,
+			neuron.validation_accuracies,
+			label='Validation Accuracy',
+			color=c[1],
+			linewidth=2,
+		)
 		plt.xlabel('Epoch')
 		plt.ylabel('Accuracy')
 		plt.title(f'Accuracy vs Epochs - {label}')
@@ -45,6 +62,7 @@ class Visualizer:
 		self._save(filename)
 
 	def plot_learning_rate_comparison(self, results: list, method_label: str, filename: str):
+		c = self._colors(3)
 		lrs = [str(lr) for lr, _, _ in results]
 		val_accs = [n.validation_accuracies[-1] for _, n, _ in results]
 		test_accs = [ta for _, _, ta in results]
@@ -55,8 +73,8 @@ class Visualizer:
 
 		_, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-		axes[0].bar(x - width / 2, val_accs, width, label='Validation Acc')
-		axes[0].bar(x + width / 2, test_accs, width, label='Test Acc')
+		axes[0].bar(x - width / 2, val_accs, width, label='Validation Acc', color=c[0])
+		axes[0].bar(x + width / 2, test_accs, width, label='Test Acc', color=c[1])
 		axes[0].set_xlabel('Learning Rate')
 		axes[0].set_ylabel('Accuracy')
 		axes[0].set_title(f'Accuracy by Learning Rate - {method_label}')
@@ -66,7 +84,7 @@ class Visualizer:
 		axes[0].set_ylim([0.8, 1.02])
 		axes[0].grid(True, alpha=0.3, axis='y')
 
-		axes[1].bar(x, val_errs, width)
+		axes[1].bar(x, val_errs, width, color=c[2])
 		axes[1].set_xlabel('Learning Rate')
 		axes[1].set_ylabel('Validation Error (MSE)')
 		axes[1].set_title(f'Validation Error by Learning Rate - {method_label}')
@@ -77,19 +95,33 @@ class Visualizer:
 		self._save(filename)
 
 	def plot_bgd_vs_sgd(self, bgd_neuron: SigmoidNeuron, sgd_neuron: SigmoidNeuron, filename: str):
+		c = self._colors(4)
 		_, axes = plt.subplots(2, 2, figsize=(16, 12))
 
 		epochs_bgd = range(1, bgd_neuron.epochs_run + 1)
 		epochs_sgd = range(1, sgd_neuron.epochs_run + 1)
 
-		# Error
-		axes[0][0].plot(epochs_bgd, bgd_neuron.train_errors, label='BGD Train', linewidth=2)
 		axes[0][0].plot(
-			epochs_bgd, bgd_neuron.validation_errors, label='BGD Val', linestyle='--', linewidth=2
+			epochs_bgd, bgd_neuron.train_errors, label='BGD Train', color=c[0], linewidth=2
 		)
-		axes[0][0].plot(epochs_sgd, sgd_neuron.train_errors, label='SGD Train', linewidth=2)
 		axes[0][0].plot(
-			epochs_sgd, sgd_neuron.validation_errors, label='SGD Val', linestyle='--', linewidth=2
+			epochs_bgd,
+			bgd_neuron.validation_errors,
+			label='BGD Val',
+			color=c[1],
+			linestyle='--',
+			linewidth=2,
+		)
+		axes[0][0].plot(
+			epochs_sgd, sgd_neuron.train_errors, label='SGD Train', color=c[2], linewidth=2
+		)
+		axes[0][0].plot(
+			epochs_sgd,
+			sgd_neuron.validation_errors,
+			label='SGD Val',
+			color=c[3],
+			linestyle='--',
+			linewidth=2,
 		)
 		axes[0][0].set_xlabel('Epoch')
 		axes[0][0].set_ylabel('MSE')
@@ -97,20 +129,25 @@ class Visualizer:
 		axes[0][0].legend()
 		axes[0][0].grid(True, alpha=0.3)
 
-		# Accuracy
-		axes[0][1].plot(epochs_bgd, bgd_neuron.train_accuracies, label='BGD Train', linewidth=2)
+		axes[0][1].plot(
+			epochs_bgd, bgd_neuron.train_accuracies, label='BGD Train', color=c[0], linewidth=2
+		)
 		axes[0][1].plot(
 			epochs_bgd,
 			bgd_neuron.validation_accuracies,
 			label='BGD Val',
+			color=c[1],
 			linestyle='--',
 			linewidth=2,
 		)
-		axes[0][1].plot(epochs_sgd, sgd_neuron.train_accuracies, label='SGD Train', linewidth=2)
+		axes[0][1].plot(
+			epochs_sgd, sgd_neuron.train_accuracies, label='SGD Train', color=c[2], linewidth=2
+		)
 		axes[0][1].plot(
 			epochs_sgd,
 			sgd_neuron.validation_accuracies,
 			label='SGD Val',
+			color=c[3],
 			linestyle='--',
 			linewidth=2,
 		)
@@ -121,18 +158,16 @@ class Visualizer:
 		axes[0][1].grid(True, alpha=0.3)
 		axes[0][1].set_ylim([0.5, 1.05])
 
-		# Galutinis tikslumas
 		methods = ['BGD', 'SGD']
 		val_accs = [bgd_neuron.validation_accuracies[-1], sgd_neuron.validation_accuracies[-1]]
-		axes[1][0].bar(methods, val_accs, color=['tab:blue', 'tab:orange'])
+		axes[1][0].bar(methods, val_accs, color=[c[0], c[2]])
 		axes[1][0].set_ylabel('Validation Accuracy')
 		axes[1][0].set_title('Final Validation Accuracy')
 		axes[1][0].set_ylim([0.8, 1.02])
 		axes[1][0].grid(True, alpha=0.3, axis='y')
 
-		# Laikas
 		times = [bgd_neuron.training_time, sgd_neuron.training_time]
-		axes[1][1].bar(methods, times, color=['tab:blue', 'tab:orange'])
+		axes[1][1].bar(methods, times, color=[c[0], c[2]])
 		axes[1][1].set_ylabel('Time (seconds)')
 		axes[1][1].set_title('Training Time')
 		axes[1][1].grid(True, alpha=0.3, axis='y')
@@ -142,12 +177,13 @@ class Visualizer:
 	def plot_time_comparison(
 		self, bgd_times: list, sgd_times: list, epoch_counts: list, filename: str
 	):
+		c = self._colors(2)
 		x = np.arange(len(epoch_counts))
 		width = 0.35
 
 		plt.figure(figsize=(10, 6))
-		plt.bar(x - width / 2, bgd_times, width, label='Batch GD')
-		plt.bar(x + width / 2, sgd_times, width, label='Stochastic GD')
+		plt.bar(x - width / 2, bgd_times, width, label='Batch GD', color=c[0])
+		plt.bar(x + width / 2, sgd_times, width, label='Stochastic GD', color=c[1])
 		plt.xlabel('Number of Epochs')
 		plt.ylabel('Training Time (seconds)')
 		plt.title('Training Time: BGD vs SGD')
