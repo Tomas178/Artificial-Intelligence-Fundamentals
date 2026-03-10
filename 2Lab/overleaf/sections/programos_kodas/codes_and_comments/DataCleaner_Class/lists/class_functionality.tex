@@ -1,0 +1,13 @@
+\begin{enumerate}
+    \item Nuskaitomas duomenų failas eilutė po eilutės. Eilutės, kuriose yra trūkstamų reikšmių (pažymėtų „?“), yra praleidžiamos.
+    \item Pašalinamas pirmasis stulpelis (paciento ID), paliekant tik $9$ požymių stulpelius ir klasės stulpelį.
+    \item Klasės reikšmės konvertuojamos:
+        \begin{itemize}
+            \item $2 \rightarrow 0$ (nepiktybinis).
+            \item $4 \rightarrow 1$ (piktybinis).
+        \end{itemize}
+    \item Duomenų eilutės permaišomos atsitiktine tvarka naudojant fiksuotą atsitiktinių skaičių generatoriaus pradinę reikšmę ($seed=42$), kad rezultatai būtų atkartojami.
+    \item Požymių reikšmės normalizuojamos į intervalą $[0; 1]$ naudojant min-max normalizaciją pagal formulę:
+    \input{2Lab/overleaf/formulas/min_max}
+    \item Metodas \texttt{save()} sujungia normalizuotus požymius su klasės stulpeliu ir išsaugo rezultatą į naują CSV failą.
+\end{enumerate}
