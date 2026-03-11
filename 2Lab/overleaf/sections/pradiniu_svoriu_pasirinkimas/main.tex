@@ -5,9 +5,9 @@ Pradinės svorių (angl.~\textit{weights}) ir poslinkio (angl.~\textit{bias}) re
 
 Maži atsitiktiniai pradiniai svoriai yra svarbūs dėl kelių priežasčių:
 \begin{itemize}
-    \item Jei visi svoriai būtų vienodi (pvz., $0$), neuronas negalėtų efektyviai mokytis, nes visi gradientai būtų simetriški.
-    \item Per didelės pradinės reikšmės gali nukreipti sigmoidinės funkcijos išėjimą į prisotinimo zonas (arti $0$ arba $1$), kur gradientai yra labai maži ir mokymas tampa lėtas.
-    \item Maži atsitiktiniai svoriai užtikrina, kad sigmoidinės funkcijos išėjimas pradžioje yra arti $0{,}5$, kur gradientai yra didžiausi ir mokymas vyksta efektyviausiai.
+    \item Jei visi svoriai būtų vienodi, neuronas negalėtų efektyviai mokytis, nes visi gradientai būtų simetriški.
+    \item Jei pradinės reikšmės būtų per didelės, sigmoidinės funkcijos~\eqref{eq:sigmoid} išėjimas patektų į sritis arti $0$ arba $1$, kur funkcijos kreivė yra beveik plokščia. Tokiu atveju gradientai tampa labai maži ir mokymas praktiškai sustoja.
+    \item Maži atsitiktiniai svoriai užtikrina, kad sigmoidinės funkcijos~\eqref{eq:sigmoid} išėjimas pradžioje yra arti $0{,}5$, kur gradientai yra didžiausi ir mokymas vyksta efektyviausiai.
 \end{itemize}
 
 Atsitiktinių skaičių generatoriaus pradinė reikšmė (angl. \textit{seed}) buvo fiksuota ($seed = 42$), kad eksperimentų rezultatai būtų atkartojami.
