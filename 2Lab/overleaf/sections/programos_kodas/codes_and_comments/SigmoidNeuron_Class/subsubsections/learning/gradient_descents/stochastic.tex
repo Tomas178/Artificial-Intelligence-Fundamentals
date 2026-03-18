@@ -1,5 +1,5 @@
-\textbf{Stochastinis gradientinis nusileidimas} – svoriai atnaujinami po kiekvieno mokymo pavyzdžio:
-$$w_k := w_k - \eta \cdot (y_i - t_i) \cdot y_i \cdot (1 - y_i) \cdot x_{ik}$$
+\textbf{Stochastinis gradientinis nusileidimas}~\eqref{eq:stochastic_gd} – svoriai atnaujinami po kiekvieno mokymo pavyzdžio:
+\input{2Lab/overleaf/formulas/stochastic_gd}
 Epocha – vienas praėjimas per visą mokymo duomenų aibę su $m$ svorių atnaujinimų (po vieną kiekvienam pavyzdžiui).
 
 Abiem atvejais kiekvienoje epochoje mokymo duomenys permaišomi atsitiktine tvarka. Mokymas vyksta tol, kol paklaida viršija $E_{min}$ ir epochų skaičius neviršija nustatytos ribos.
