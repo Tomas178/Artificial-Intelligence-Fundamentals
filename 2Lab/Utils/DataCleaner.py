@@ -30,7 +30,7 @@ class DataCleaner:
 		self.features = data[:, 1:10]
 		self.labels = data[:, 10]
 
-		# Konvertuojame 2 ir 4 klases į 0 ir 1 klases
+		# Konvertuojame 2 ir 4 klases atitinkamai į 0 ir 1 klases
 		self.labels = np.where(self.labels == 2, 0, 1)
 
 		print(f'Total features: {self.features.shape[1]}')

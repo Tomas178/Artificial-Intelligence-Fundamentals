@@ -33,6 +33,15 @@ class DataSplitter:
 		print(f'Validation set: {len(self.X_validation)} samples')
 		print(f'Test set: {len(self.X_test)} samples')
 
+		# Klasių pasiskirstymas kiekvienoje aibėje
+		print(
+			f'\nTraining - Class 0: {np.sum(self.y_train == 0)}, Class 1: {np.sum(self.y_train == 1)}'
+		)
+		print(
+			f'Validation - Class 0: {np.sum(self.y_validation == 0)}, Class 1: {np.sum(self.y_validation == 1)}'
+		)
+		print(f'Test - Class 0: {np.sum(self.y_test == 0)}, Class 1: {np.sum(self.y_test == 1)}')
+
 		return (
 			self.X_train,
 			self.y_train,
