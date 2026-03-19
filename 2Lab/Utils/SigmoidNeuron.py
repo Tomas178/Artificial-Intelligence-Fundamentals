@@ -70,8 +70,9 @@ class SigmoidNeuron:
 			total_error = 0.0
 			gradient_sum_w = np.zeros(len(self.weights))
 			gradient_sum_b = 0.0
+			m = len(X_shuffled)
 
-			for i in range(len(X_shuffled)):
+			for i in range(m):
 				x_i = X_shuffled[i]
 				t_i = y_shuffled[i]
 				y_i = self.predict(x_i.reshape(1, -1))[0]
@@ -87,7 +88,6 @@ class SigmoidNeuron:
 
 				total_error += (t_i - y_i) ** 2
 
-			m = len(X_shuffled)
 			total_error = total_error / m
 
 			if not stochastic:
