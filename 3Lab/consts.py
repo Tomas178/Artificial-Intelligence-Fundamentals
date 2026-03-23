@@ -1,0 +1,3 @@
+DATASETS_DIRECTORY = 'datasets'
+MUFFIN_VS_CHIHUAHUA_DIRECTORY = 'muffin-vs-chihuahua'
+KEYSTROKES_DIRECTORY = 'keystrokes'

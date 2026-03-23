@@ -3,9 +3,12 @@ import shutil
 
 from sklearn.model_selection import train_test_split
 
+from Utils.DataSplitter import BaseDataSplitter
+from Utils.DataSplitter.consts import DATA_FOLDERS, FILENAME_VALIDATION, RANDOM_STATE, SPLIT_SIZE
 
-class DataSplitter:
-	def __init__(self, train_dir, output_dir, val_ratio=0.2, random_state=42):
+
+class ImageDataSplitter(BaseDataSplitter):
+	def __init__(self, train_dir, output_dir, val_ratio=SPLIT_SIZE, random_state=RANDOM_STATE):
 		self.train_dir = train_dir
 		self.output_dir = output_dir
 		self.val_ratio = val_ratio
@@ -17,7 +20,7 @@ class DataSplitter:
 			if not os.path.isdir(cls_dir):
 				continue
 
-			val_cls_dir = os.path.join(self.output_dir, 'validation', cls)
+			val_cls_dir = os.path.join(self.output_dir, FILENAME_VALIDATION, cls)
 			os.makedirs(val_cls_dir, exist_ok=True)
 
 			files = os.listdir(cls_dir)
@@ -25,14 +28,15 @@ class DataSplitter:
 				files, test_size=self.val_ratio, random_state=self.random_state
 			)
 
-			for f in val_files:
-				shutil.move(os.path.join(cls_dir, f), os.path.join(val_cls_dir, f))
+			for file in val_files:
+				shutil.move(os.path.join(cls_dir, file), os.path.join(val_cls_dir, file))
 
-		print('Split complete!')
-		for split in ['train', 'validation', 'test']:
+		for split in DATA_FOLDERS:
 			split_dir = os.path.join(self.output_dir, split)
 			if not os.path.isdir(split_dir):
 				continue
 			for cls in sorted(os.listdir(split_dir)):
 				count = len(os.listdir(os.path.join(split_dir, cls)))
-				print(f'  {split}/{cls}: {count} images')
+				print(f'{split}/{cls}: {count} images')
+
+		print('Image Data Split Completed!\n')
