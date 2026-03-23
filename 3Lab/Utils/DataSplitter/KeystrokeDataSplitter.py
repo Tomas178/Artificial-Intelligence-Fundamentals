@@ -3,14 +3,9 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+from Utils.consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
 from Utils.DataSplitter import BaseDataSplitter
-from Utils.DataSplitter.consts import (
-	FILENAME_TEST,
-	FILENAME_TRAIN,
-	FILENAME_VALIDATION,
-	RANDOM_STATE,
-	SPLIT_SIZE,
-)
+from Utils.DataSplitter.consts import RANDOM_STATE, SPLIT_SIZE
 
 COLUMN_SUBJECT = 'subject'
 COLUMN_SESSION_INDEX = 'sessionIndex'
