@@ -1,8 +1,7 @@
 import os
 
-import pandas as pd
 from consts import DATASETS_DIRECTORY, KEYSTROKES_DIRECTORY, MUFFIN_VS_CHIHUAHUA_DIRECTORY
-from Utils.DataReader import ImageDataReader
+from Utils.DataReader import ImageDataReader, KeystrokeDataReader
 
 
 def main():
@@ -13,16 +12,11 @@ def main():
 	dataset_images_train, dataset_images_validation, dataset_images_test = image_data_reader.read()
 
 	# Paloadiname keystrokes duomenis
-	# keystrokes_dir = os.path.join(DATASETS_DIRECTORY, KEYSTROKES_DIRECTORY)
+	KEYSTROKE_DIR = os.path.join(DATASETS_DIRECTORY, KEYSTROKES_DIRECTORY)
 
-	# train_df = pd.read_csv(os.path.join(keystrokes_dir, f'{FILENAME_TRAIN}.csv'))
-	# validation_df = pd.read_csv(os.path.join(keystrokes_dir, f'{FILENAME_VALIDATION}.csv'))
-	# test_df = pd.read_csv(os.path.join(keystrokes_dir, f'{FILENAME_TEST}.csv'))
+	keystroke_data_reader = KeystrokeDataReader(KEYSTROKE_DIR)
 
-	# print('Keystrokes Data:')
-	# print(f'{FILENAME_TRAIN}: {len(train_df)}.')
-	# print(f'{FILENAME_VALIDATION}: {len(validation_df)}.')
-	# print(f'{FILENAME_TEST}: {len(test_df)}.\n')
+	train_df, validation_df, test_df = keystroke_data_reader.read()
 
 
 if __name__ == '__main__':
