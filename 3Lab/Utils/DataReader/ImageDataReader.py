@@ -3,7 +3,7 @@ import os
 from torchvision import datasets, transforms
 
 from Utils.consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
-from Utils.DataReader.BaseDataReader import BaseDataReader
+from Utils.DataReader import BaseDataReader
 
 
 class ImageDataReader(BaseDataReader):
