@@ -1,7 +1,7 @@
 import os
 
 from consts import DATASETS_DIRECTORY, KEYSTROKES_DIRECTORY, MUFFIN_VS_CHIHUAHUA_DIRECTORY
-from Utils.DataSplitter import ImageDataSplitter, KeystrokeDataSplitter
+from DataSplitter import ImageDataSplitter, KeystrokeDataSplitter
 
 
 def main():

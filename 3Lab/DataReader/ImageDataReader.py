@@ -1,13 +1,13 @@
 import os
 
+from consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
 from torchvision import datasets, transforms
 
-from Utils.consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
-from Utils.DataReader import BaseDataReader
+from DataReader import BaseDataReader
 
 
 class ImageDataReader(BaseDataReader):
-	transform = transforms.Compose(
+	TRANSFORM = transforms.Compose(
 		[
 			transforms.Resize((128, 128)),
 			transforms.ToTensor(),
@@ -19,13 +19,13 @@ class ImageDataReader(BaseDataReader):
 
 	def read(self):
 		dataset_images_train = datasets.ImageFolder(
-			os.path.join(self.base_dir, FILENAME_TRAIN), transform=self.transform
+			os.path.join(self.base_dir, FILENAME_TRAIN), transform=self.TRANSFORM
 		)
 		dataset_images_validation = datasets.ImageFolder(
-			os.path.join(self.base_dir, FILENAME_VALIDATION), transform=self.transform
+			os.path.join(self.base_dir, FILENAME_VALIDATION), transform=self.TRANSFORM
 		)
 		dataset_images_test = datasets.ImageFolder(
-			os.path.join(self.base_dir, FILENAME_TEST), transform=self.transform
+			os.path.join(self.base_dir, FILENAME_TEST), transform=self.TRANSFORM
 		)
 
 		print('Images Data:')

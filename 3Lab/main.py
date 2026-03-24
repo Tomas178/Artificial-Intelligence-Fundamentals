@@ -1,7 +1,7 @@
 import os
 
 from consts import DATASETS_DIRECTORY, KEYSTROKES_DIRECTORY, MUFFIN_VS_CHIHUAHUA_DIRECTORY
-from Utils.DataReader import ImageDataReader, KeystrokeDataReader
+from DataReader import ImageDataReader, KeystrokeDataReader
 
 
 def main():

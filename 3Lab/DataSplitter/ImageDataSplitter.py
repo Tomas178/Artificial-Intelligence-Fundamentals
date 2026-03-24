@@ -1,11 +1,11 @@
 import os
 import shutil
 
+from consts import DATA_FOLDERS, FILENAME_VALIDATION
 from sklearn.model_selection import train_test_split
 
-from Utils.consts import DATA_FOLDERS, FILENAME_VALIDATION
-from Utils.DataSplitter import BaseDataSplitter
-from Utils.DataSplitter.consts import RANDOM_STATE, SPLIT_SIZE
+from DataSplitter import BaseDataSplitter
+from DataSplitter.consts import RANDOM_STATE, SPLIT_SIZE
 
 
 class ImageDataSplitter(BaseDataSplitter):

@@ -1,9 +1,9 @@
 import os
 
 import pandas as pd
+from consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
 
-from Utils.consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
-from Utils.DataReader import BaseDataReader
+from DataReader import BaseDataReader
 
 
 class KeystrokeDataReader(BaseDataReader):
