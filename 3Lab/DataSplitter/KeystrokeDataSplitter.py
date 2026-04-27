@@ -10,6 +10,7 @@ from DataSplitter.consts import RANDOM_STATE, SPLIT_SIZE
 COLUMN_SUBJECT = 'subject'
 COLUMN_SESSION_INDEX = 'sessionIndex'
 COLUMNS_TO_DROP = [COLUMN_SUBJECT, COLUMN_SESSION_INDEX, 'rep']
+EPSILON = 1e-8
 
 SUBJECTS_COUNT = 30
 SESSION_COUNT = 1
@@ -30,6 +31,18 @@ class KeystrokeDataSplitter(BaseDataSplitter):
 		self.session = session
 		self.random_state = random_state
 
+	def _normalize(self, df):
+		feature_columns = [col for col in df.columns if col not in COLUMNS_TO_DROP]
+
+		feature_min = df[feature_columns].min()
+		feature_max = df[feature_columns].max()
+
+		df[feature_columns] = (df[feature_columns] - feature_min) / (
+			feature_max - feature_min + EPSILON
+		)
+
+		return df
+
 	def split(self):
 		df = pd.read_csv(self.csv_path)
 
@@ -37,6 +50,9 @@ class KeystrokeDataSplitter(BaseDataSplitter):
 
 		subjects = sorted(df[COLUMN_SUBJECT].unique())[: self.n_subjects]
 		df = df[df[COLUMN_SUBJECT].isin(subjects)]
+
+		# Normalizuojame prieš dalijimą
+		df = self._normalize(df)
 
 		X = df.drop(columns=COLUMNS_TO_DROP)
 		y = df[COLUMN_SUBJECT]
