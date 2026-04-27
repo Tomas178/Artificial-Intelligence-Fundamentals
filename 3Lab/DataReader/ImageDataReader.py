@@ -1,17 +1,16 @@
 import os
 
 import torch
-from consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION
+from consts import FILENAME_TEST, FILENAME_TRAIN, FILENAME_VALIDATION, IMAGE_SIZE
 from DataSplitter.consts import RANDOM_STATE
 from torch.utils.data import Subset
 from torchvision import datasets, transforms
 
 from DataReader.BaseDataReader import BaseDataReader
 
-IMAGE_SIZE = 128
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
-SUBSET_RATIO = 0.5  # Naudojame tik 50% duomenų
+DEFAULT_SUBSET_RATIO = 0.5  # Naudojame tik 50% duomenų
 
 
 class ImageDataReader(BaseDataReader):
@@ -23,12 +22,13 @@ class ImageDataReader(BaseDataReader):
 		]
 	)
 
-	def __init__(self, base_dir: str):
+	def __init__(self, base_dir: str, subset_ratio: float = DEFAULT_SUBSET_RATIO):
 		self.base_dir = base_dir
+		self.subset_ratio = subset_ratio
 
 	def _reduce_dataset(self, dataset):
 		total = len(dataset)
-		subset_size = int(total * SUBSET_RATIO)
+		subset_size = int(total * self.subset_ratio)
 		generator = torch.Generator().manual_seed(RANDOM_STATE)
 		indices = torch.randperm(total, generator=generator)[:subset_size].tolist()
 		subset = Subset(dataset, indices)

@@ -1,5 +1,4 @@
 import torch.nn as nn
-from Enums import ActivationFunction
 
 from Models.consts import ACTIVATION_LAYERS
 

@@ -1,4 +1,5 @@
 import torch.nn as nn
+from consts import IMAGE_SIZE
 from Enums import ActivationFunction
 
 from Models.BaseCNN import BaseCNN
@@ -9,7 +10,7 @@ DEFAULT_NUM_FILTERS = (32, 64, 128)
 DEFAULT_KERNEL_SIZE = 3
 DEFAULT_POOL_SIZE = 2
 DEFAULT_INPUT_CHANNELS = 3
-DEFAULT_IMAGE_SIZE = 128
+DEFAULT_IMAGE_SIZE = IMAGE_SIZE
 DEFAULT_CLASSIFIER_HIDDEN_SIZE = 256
 
 
