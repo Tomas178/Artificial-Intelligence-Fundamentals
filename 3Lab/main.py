@@ -60,12 +60,13 @@ def run_experiment(
 	train_loader,
 	val_loader,
 	test_loader,
-	experiment_name,
+	save_directory,
+	display_name,
 	device,
 	optimizer=Optimizer.ADAM,
 	class_names=None,
 ):
-	print(f'\n=== {experiment_name} ===')
+	print(f'\n=== {display_name} ===')
 
 	trainer = Trainer(
 		model=model,
@@ -80,11 +81,10 @@ def run_experiment(
 	trainer.train(epochs=EPOCHS)
 	test_loss, test_accuracy = trainer.evaluate()
 
-	save_directory = os.path.join(RESULTS_DIRECTORY, experiment_name.replace(' ', '_').lower())
 	os.makedirs(save_directory, exist_ok=True)
 
 	trainer.plot_history(
-		title=experiment_name,
+		title=display_name,
 		save_path=os.path.join(save_directory, 'history.png'),
 	)
 
@@ -92,26 +92,30 @@ def run_experiment(
 	Trainer.plot_confusion_matrix(
 		confusion_mat,
 		class_names=class_names,
-		title=f'{experiment_name} - Confusion Matrix',
+		title=f'{display_name} - Confusion Matrix',
 		save_path=os.path.join(save_directory, 'confusion_matrix.png'),
 	)
 
 	return trainer.history, test_loss, test_accuracy
 
 
-def _run_specs(specs, loaders, label_prefix, study_name, domain, device):
+def _run_specs(specs, loaders, study_dir, study_display, domain, device):
 	train, val, test, classes = loaders
 	histories = {}
 	outcomes = []
+	study_root = os.path.join(RESULTS_DIRECTORY, study_dir)
 	for label, factory, run_kwargs in specs:
-		full_label = f'{label_prefix} - {label}'
+		exp_slug = f'{domain}_{label}'.replace(' ', '_').lower()
+		save_directory = os.path.join(study_root, exp_slug)
+		display_name = f'{study_display} - {domain.title()} - {label}'
 		model = factory()
 		history, test_loss, test_accuracy = run_experiment(
 			model,
 			train,
 			val,
 			test,
-			full_label,
+			save_directory,
+			display_name,
 			device,
 			class_names=classes,
 			**run_kwargs,
@@ -119,9 +123,10 @@ def _run_specs(specs, loaders, label_prefix, study_name, domain, device):
 		histories[label] = history
 		outcomes.append(
 			{
-				'label': full_label,
+				'label': display_name,
 				'variant': label,
-				'study': study_name,
+				'study': study_display,
+				'study_dir': study_dir,
 				'domain': domain,
 				'factory': factory,
 				'run_kwargs': run_kwargs,
@@ -134,47 +139,48 @@ def _run_specs(specs, loaders, label_prefix, study_name, domain, device):
 
 
 def run_study(
-	study_name,
+	study_dir,
+	study_display,
 	image_specs,
 	keystroke_specs,
 	image_loaders,
 	keystrokes_loaders,
 	device,
-	image_save,
-	keystroke_save,
 ):
 	print('\n' + '=' * 60)
-	print(study_name)
+	print(study_display)
 	print('=' * 60)
 
 	study_start = time.perf_counter()
+	study_root = os.path.join(RESULTS_DIRECTORY, study_dir)
+	os.makedirs(study_root, exist_ok=True)
 
 	image_histories, image_outcomes = _run_specs(
 		image_specs,
 		image_loaders,
-		f'Image {study_name}',
-		study_name,
+		study_dir,
+		study_display,
 		DOMAIN_IMAGE,
 		device,
 	)
 	Trainer.plot_comparison(
 		image_histories,
-		f'Images - {study_name}',
-		os.path.join(RESULTS_DIRECTORY, image_save),
+		f'Images - {study_display}',
+		os.path.join(study_root, 'img_comparison.png'),
 	)
 
 	keystroke_histories, keystroke_outcomes = _run_specs(
 		keystroke_specs,
 		keystrokes_loaders,
-		f'Keystroke {study_name}',
-		study_name,
+		study_dir,
+		study_display,
 		DOMAIN_KEYSTROKE,
 		device,
 	)
 	Trainer.plot_comparison(
 		keystroke_histories,
-		f'Keystrokes - {study_name}',
-		os.path.join(RESULTS_DIRECTORY, keystroke_save),
+		f'Keystrokes - {study_display}',
+		os.path.join(study_root, 'ks_comparison.png'),
 	)
 
 	elapsed = time.perf_counter() - study_start
@@ -208,14 +214,13 @@ def run_architecture_experiments(image_loaders, keystrokes_loaders, device):
 		for name, filters in keystroke_architectures.items()
 	]
 	return run_study(
-		'TYRIMAS 1: Architektūros palyginimas',
+		'architecture',
+		'STUDY 1: Architecture Comparison',
 		image_specs,
 		keystroke_specs,
 		image_loaders,
 		keystrokes_loaders,
 		device,
-		'img_architecture_comparison.png',
-		'ks_architecture_comparison.png',
 	)
 
 
@@ -235,14 +240,13 @@ def run_dropout_experiments(image_loaders, keystrokes_loaders, device):
 		for d in dropout_values
 	]
 	return run_study(
-		'TYRIMAS 2: Dropout palyginimas',
+		'dropout',
+		'STUDY 2: Dropout Comparison',
 		image_specs,
 		keystroke_specs,
 		image_loaders,
 		keystrokes_loaders,
 		device,
-		'img_dropout_comparison.png',
-		'ks_dropout_comparison.png',
 	)
 
 
@@ -268,14 +272,13 @@ def run_batch_norm_experiments(image_loaders, keystrokes_loaders, device):
 		for use_bn, label in bn_options
 	]
 	return run_study(
-		'TYRIMAS 3: Batch Normalization',
+		'batch_norm',
+		'STUDY 3: Batch Normalization',
 		image_specs,
 		keystroke_specs,
 		image_loaders,
 		keystrokes_loaders,
 		device,
-		'img_batchnorm_comparison.png',
-		'ks_batchnorm_comparison.png',
 	)
 
 
@@ -304,14 +307,13 @@ def run_activation_experiments(image_loaders, keystrokes_loaders, device):
 		for activation in activations
 	]
 	return run_study(
-		'TYRIMAS 4: Aktyvacijos funkcijos',
+		'activation',
+		'STUDY 4: Activation Functions',
 		image_specs,
 		keystroke_specs,
 		image_loaders,
 		keystrokes_loaders,
 		device,
-		'img_activation_comparison.png',
-		'ks_activation_comparison.png',
 	)
 
 
@@ -334,14 +336,13 @@ def run_optimizer_experiments(image_loaders, keystrokes_loaders, device):
 		for optimizer in Optimizer
 	]
 	return run_study(
-		'TYRIMAS 5: Optimizavimo algoritmai',
+		'optimizer',
+		'STUDY 5: Optimizers',
 		image_specs,
 		keystroke_specs,
 		image_loaders,
 		keystrokes_loaders,
 		device,
-		'img_optimizer_comparison.png',
-		'ks_optimizer_comparison.png',
 	)
 
 
@@ -368,16 +369,16 @@ def pick_best(outcomes):
 
 def evaluate_best_model(outcome, loaders, device, dir_name, display_name, title_name):
 	summary = best_epoch_summary(outcome['history'])
-	print(f'\n--- Geriausias {display_name} modelis ---')
-	print(f'Atrinkta iš: {outcome["study"]}')
-	print(f'Variantas: {outcome["variant"]}')
+	print(f'\n--- Best {display_name} Model ---')
+	print(f'Selected from: {outcome["study"]}')
+	print(f'Variant: {outcome["variant"]}')
 	print(
 		f'Sweep best epoch={summary["epoch"]} | '
 		f'val_acc={summary["val_acc"]:.4f} | val_loss={summary["val_loss"]:.4f} | '
 		f'train_acc={summary["train_acc"]:.4f} | train_loss={summary["train_loss"]:.4f}'
 	)
 	print(f'Sweep test_acc={outcome["test_accuracy"]:.4f} | test_loss={outcome["test_loss"]:.4f}')
-	print('Re-mokoma su didesniu duomenų rinkiniu...\n')
+	print('Retraining with larger dataset...\n')
 
 	train, val, test, classes = loaders
 	model = outcome['factory']()
@@ -395,7 +396,7 @@ def evaluate_best_model(outcome, loaders, device, dir_name, display_name, title_
 	trainer.train(epochs=EPOCHS)
 	final_test_loss, final_test_accuracy = trainer.evaluate()
 
-	output_dir = os.path.join(RESULTS_DIRECTORY, f'best_{dir_name}_model')
+	output_dir = os.path.join(RESULTS_DIRECTORY, 'best_model', dir_name)
 	os.makedirs(output_dir, exist_ok=True)
 
 	trainer.plot_history(
@@ -409,10 +410,10 @@ def evaluate_best_model(outcome, loaders, device, dir_name, display_name, title_
 		save_path=os.path.join(output_dir, 'confusion_matrix.png'),
 	)
 
-	print(f'\n30 pavyzdinių spėjimų ({display_name}):')
+	print(f'\n30 sample predictions ({display_name}):')
 	for sample in trainer.get_sample_predictions(num_samples=30, class_names=classes):
 		is_correct = '✓' if sample['true'] == sample['predicted'] else '✗'
-		print(f'  {is_correct} Tikra: {sample["true"]}, Spėjimas: {sample["predicted"]}')
+		print(f'  {is_correct} True: {sample["true"]}, Predicted: {sample["predicted"]}')
 
 	return final_test_loss, final_test_accuracy
 
@@ -422,19 +423,19 @@ def run_best_model_evaluation(
 	image_outcomes, keystroke_outcomes, image_loaders, keystroke_loaders, device
 ):
 	print('\n' + '=' * 60)
-	print('GERIAUSIO MODELIO ĮVERTINIMAS')
+	print('BEST MODEL EVALUATION')
 	print('=' * 60)
 
 	best_image = pick_best(image_outcomes)
 	best_keystroke = pick_best(keystroke_outcomes)
 
-	evaluate_best_model(best_image, image_loaders, device, 'image', 'vaizdų', 'Image')
+	evaluate_best_model(best_image, image_loaders, device, 'image', 'image', 'Image')
 	evaluate_best_model(
 		best_keystroke,
 		keystroke_loaders,
 		device,
 		'keystroke',
-		'klavišų paspaudimų',
+		'keystroke',
 		'Keystroke',
 	)
 
@@ -492,7 +493,7 @@ def main():
 
 	elapsed = time.perf_counter() - overall_start
 	print('\n' + '=' * 60)
-	print(f'BENDRAS LAIKAS: {elapsed:.1f} s ({elapsed / 60:.2f} min, {elapsed / 3600:.2f} h)')
+	print(f'TOTAL TIME: {elapsed:.1f} s ({elapsed / 60:.2f} min, {elapsed / 3600:.2f} h)')
 	print('=' * 60)
 
 
