@@ -1,0 +1,10 @@
+\sectionnonum{Išvados}
+\label{sec:isvados}
+
+\begin{enumerate}
+    \item Sigmoidinis neuronas sėkmingai išmoko klasifikuoti krūties vėžio duomenis – geriausias modelis pasiekė $99{,}1\ \%$ validavimo ir $95{,}6\ \%$ testavimo tikslumą.
+    \item Stochastinis gradientinis nusileidimas pasiekė mažesnę paklaidą ir aukštesnį validavimo tikslumą nei paketinis, tačiau paketinis metodas geriau generalizavo testavimo duomenims ($97{,}1\ \%$ prieš $95{,}6\ \%$).
+    \item Paketinis gradientinis nusileidimas yra jautresnis mokymosi greičio parinkimui – su $\eta = 0{,}01$ validavimo tikslumas siekė tik $81{,}8\ \%$, tuo tarpu stochastinis metodas visais atvejais pasiekė $99{,}1\ \%$.
+    \item Mokymo laikas abiem metodams buvo panašus, tačiau stochastinis metodas didėjant epochų skaičiui tampa greitesnis.
+    \item Iš $137$ testavimo įrašų $6$ buvo klasifikuoti neteisingai – $3$ nepiktybiniai navikai priskirti piktybiniams ir $3$ piktybiniai priskirti nepiktybiniams.
+\end{enumerate}

@@ -1,0 +1,63 @@
+\documentclass[]{VUMIFTemplateClass}
+
+\usepackage{indentfirst}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+\usepackage{color,algorithm,algorithmic}
+\usepackage[nottoc]{tocbibind}
+\usepackage{tocloft}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\makeatletter
+\renewcommand{\fnum@algorithm}{\thealgorithm}
+\makeatother
+\renewcommand\thealgorithm{\arabic{algorithm} algoritmas}
+
+\bibliography{bibliografija}
+
+% Author's MACROS
+\newcommand{\EE}{\mathbb{E}\,}
+\newcommand{\ee}{{\mathrm e}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+\studijuprograma{Informacinių sistemų inžinerijos}
+\darbotipas{Laboratorinis darbas}
+\darbopavadinimas{Vieno neurono mokymas sprendžiant klasifikavimo uždavinį}
+\darbopavadinimasantras{Single neuron training while solving classification problem}
+\autorius{Tomas Petronis}
+
+\vadovas{dr. Viktor Medvedev}
+
+\begin{document}
+\selectlanguage{lithuanian}
+
+\onehalfspacing
+\input{sections/titulinis}
+
+\tableofcontents
+\onehalfspacing
+
+\input{sections/uzduoties_tikslas}
+\input{sections/duomenys/main}
+\input{2Lab/overleaf/sections/pradiniu_svoriu_pasirinkimas/main}
+\input{sections/programos_kodas/main}
+\input{sections/tyrimo_rezultatai/main}
+\input{sections/geriausias_modelis/main}
+\input{sections/isvados}
+
+
+\singlespacing
+
+\printbibliography[title = {Šaltiniai}]
+\end{document}

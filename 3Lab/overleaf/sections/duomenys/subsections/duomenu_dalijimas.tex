@@ -1,0 +1,19 @@
+\subsection{Duomenų dalijimas}
+\label{subsec:duomenu_dalijimas}
+
+Duomenys buvo padalinti taikant $64{:}16{:}20$ metodą. T.y. vyko 2 dalijimai:
+\begin{enumerate}
+    \item Pirmasis dalijimas įvyko iš visos sutvarkytos duomenų aibės – $80\ \%$ mokymo + validavimo aibė bei $20\ \%$ testavimo aibė.
+    \item Antrasis dalijimas įvyko iš mokymo + validavimo aibės – $80\ \%$ mokymo aibė bei $20\ \%$ validavimo aibė.
+\end{enumerate}
+
+Objektų pasiskirstymą per duomenų aibes galima pamatyti \ref{tab:objektu_pasiskirstymas} lentelėje.
+
+\input{2Lab/overleaf/sections/duomenys/tables/objektu_pasiskirstymas}
+
+Kiekviena duomenų aibė turi savo paskirtį:
+\begin{itemize}
+    \item Mokymo aibė – naudojama neurono svoriams ir poslinkiui atnaujinti mokymo metu.
+    \item Validavimo aibė – naudojama neurono kokybei stebėti kiekvienos epochos pabaigoje. Padeda nustatyti geriausius parametrus bei pastebėti ar nevyksta persimokymas (angl.~\textit{Overfitting}).
+    \item Testavimo aibė – naudojama galutiniam modelio įvertinimui. Kadangi šioje aibėje, jokie objektai nesutampa su mokymo ar validavimo aibės objektais, tai galima ištestuoti, kaip modelis veiktų su naujais, nematytais duomenimis.
+\end{itemize}
