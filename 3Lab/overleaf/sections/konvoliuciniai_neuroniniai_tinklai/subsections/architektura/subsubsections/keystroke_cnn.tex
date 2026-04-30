@@ -1,0 +1,6 @@
+\subsubsection{Laiko eilučių tinklas (1D CNN)}
+\label{subsubsec:keystroke_cnn}
+
+Klasė \texttt{KeystrokeCNN} naudoja \texttt{nn.Conv1d}, \texttt{nn.BatchNorm1d}, \texttt{nn.MaxPool1d} ir \texttt{nn.Dropout} sluoksnius. Įėjimas – $1 \times 31$ formato sekos tenzorius ($31$ klaviatūros laikinių požymių, vienas kanalas). Bazinė konfigūracija turi du konvoliucinius blokus su filtrų skaičiais $(64,\,128)$, branduolio dydžiu $3$ ir telkimo dydžiu $2$. Po dviejų telkimo sluoksnių sekos ilgis sumažėja iki $\lfloor 31 / 2^{2} \rfloor = 7$, todėl po suplojimo gaunamas $128 \cdot 7 = 896$ dydžio vektorius, paduodamas į $128$ neuronų paslėptąjį sluoksnį, o galiausiai – į $30$ neuronų išėjimo sluoksnį (po vieną neuroną kiekvienam dalyviui). Sluoksnių parametrai pateikti \ref{tab:keystroke_cnn_architecture} lentelėje.
+
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/tables/keystroke_cnn_architecture}

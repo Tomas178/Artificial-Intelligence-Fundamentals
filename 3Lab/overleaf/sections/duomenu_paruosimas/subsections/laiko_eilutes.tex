@@ -1,0 +1,17 @@
+\subsection{Laiko eilučių paruošimas}
+\label{subsec:laiko_eiluciu_paruosimas}
+
+Pradinė CMU \textit{Keystroke Dynamics} aibė pateikiama vienu CSV failu su $20\,400$ įrašų ir $34$ stulpeliais ($3$ metaduomenys ir $31$ laikinis požymis). Klasė \texttt{KeystrokeDataSplitter} atlieka šiuos paruošimo žingsnius:
+\begin{enumerate}
+    \item Pasirenkama tik viena sesija – \texttt{sessionIndex}~$=1$, todėl pašalinami $7$ kitų sesijų įrašai.
+    \item Iš likusių dalyvių išrenkami pirmieji $30$ pagal abėcėlinę tvarką ($\texttt{n\_subjects}=30$). Likę įrašai atmetami, todėl gaunama klasifikavimo užduotis su $30$ klasių.
+    \item Požymiai normalizuojami min-max metodu į intervalą $[0,\,1]$:
+    \[
+        x' = \frac{x - x_{\min}}{x_{\max} - x_{\min} + \varepsilon},\qquad \varepsilon = 10^{-8},
+    \]
+    kur $\varepsilon$ apsaugo nuo dalybos iš nulio, jei stulpelio reikšmės sutampa.
+    \item Pašalinami metaduomenų stulpeliai \texttt{sessionIndex} ir \texttt{rep}, o stulpelis \texttt{subject} išsaugomas tik kaip klasės etiketė.
+    \item Tekstinės subjektų etiketės (pvz., \texttt{s002}) klasėje \texttt{KeystrokeDataset} verčiamos į sveikųjų skaičių indeksus per \texttt{label\_map}, o požymiai paduodami į tinklą kaip $1 \times 31$ formato \texttt{torch.float32} tenzorius (vienas kanalas, $31$ pozicijų sekos ilgis).
+\end{enumerate}
+
+Po šių žingsnių aibėje lieka $30 \cdot 50 = 1\,500$ įrašų.

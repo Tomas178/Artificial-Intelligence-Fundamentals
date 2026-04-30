@@ -1,0 +1,13 @@
+\subsection{Architektūra}
+\label{subsec:architektura}
+
+Abu tinklai sukonstruoti pagal vienodą šabloną, įgyvendintą bazinėje klasėje \texttt{BaseCNN}. Tinklą sudaro dvi dalys:
+\begin{itemize}
+    \item \textbf{Požymių išskyrimo blokas} (angl.~\textit{feature extractor}) – kelios konvoliucinių blokų pakopos. Kiekvieną pakopą sudaro: konvoliucinis sluoksnis (\texttt{padding}~$=1$), pasirinktinai paketinio normalizavimo sluoksnis, aktyvacijos funkcija, telkimo sluoksnis ir pasirinktinai \textit{Dropout} sluoksnis.
+    \item \textbf{Klasifikatorius} – \texttt{Flatten} sluoksnis, paslėptas pilnai sujungtas (angl.~\textit{fully connected}) sluoksnis, aktyvacijos funkcija, \textit{Dropout} sluoksnis ir išėjimo pilnai sujungtas sluoksnis su tiek neuronų, kiek yra klasių.
+\end{itemize}
+
+Skirtingi išvedimo metodai ($\_compute\_flattened\_size$) leidžia teisingai apskaičiuoti suplotos požymių žemėlapio matricos dydį po visų telkimo sluoksnių: vaizdams – $C \cdot (W / s^{L})^2$, laiko eilutėms – $C \cdot \lfloor n / s^{L} \rfloor$, čia $C$ – paskutinio sluoksnio filtrų skaičius, $W$ – įėjimo vaizdo kraštinė, $n$ – įėjimo požymių skaičius, $s$ – telkimo dydis, $L$ – konvoliucinių blokų skaičius.
+
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/subsections/architektura/subsubsections/image_cnn}
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/subsections/architektura/subsubsections/keystroke_cnn}

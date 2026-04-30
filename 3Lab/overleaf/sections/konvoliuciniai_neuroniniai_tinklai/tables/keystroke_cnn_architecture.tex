@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \caption{Laiko eilučių klasifikavimo tinklo (\texttt{KeystrokeCNN}) bazinės architektūros sluoksniai.}
+    \begin{tabular}{|c|l|l|}
+        \hline
+        Nr. & Sluoksnis & Parametrai / išėjimas \\
+        \hline
+        $0$ & Įėjimas & $1 \times 31$ \\ \hline
+        $1$ & \texttt{Conv1d} & $1 \to 64$, branduolys $3$, \texttt{padding}~$=1$ \\ \hline
+        $2$ & \texttt{ReLU} & – \\ \hline
+        $3$ & \texttt{MaxPool1d} & dydis $2$, išėjimas $64 \times 15$ \\ \hline
+        $4$ & \texttt{Conv1d} & $64 \to 128$, branduolys $3$, \texttt{padding}~$=1$ \\ \hline
+        $5$ & \texttt{ReLU} & – \\ \hline
+        $6$ & \texttt{MaxPool1d} & dydis $2$, išėjimas $128 \times 7$ \\ \hline
+        $7$ & \texttt{Flatten} & $896$ \\ \hline
+        $8$ & \texttt{Linear} & $896 \to 128$ \\ \hline
+        $9$ & \texttt{ReLU} & – \\ \hline
+        $10$ & \texttt{Dropout} & $p = 0{,}0$ (bazinė) \\ \hline
+        $11$ & \texttt{Linear} & $128 \to 30$ \\ \hline
+    \end{tabular}
+    \label{tab:keystroke_cnn_architecture}
+\end{table}

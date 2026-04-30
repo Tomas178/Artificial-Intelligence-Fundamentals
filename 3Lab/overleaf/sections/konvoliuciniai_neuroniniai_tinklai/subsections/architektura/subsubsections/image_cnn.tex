@@ -1,0 +1,6 @@
+\subsubsection{Vaizdų tinklas (2D CNN)}
+\label{subsubsec:image_cnn}
+
+Klasė \texttt{ImageCNN} naudoja \texttt{nn.Conv2d}, \texttt{nn.BatchNorm2d}, \texttt{nn.MaxPool2d} ir \texttt{nn.Dropout2d} sluoksnius. Įėjimas – $3 \times 64 \times 64$ formato RGB tenzorius (vaizdo kraštinė valdoma konstanta \texttt{IMAGE\_SIZE} $= 64$). Bazinė konfigūracija turi tris konvoliucinius blokus su filtrų skaičiais $(32,\,64,\,128)$, branduolio dydžiu $3 \times 3$ ir telkimo dydžiu $2 \times 2$. Po trijų telkimo sluoksnių požymių žemėlapio kraštinė sumažėja iki $64 / 2^{3} = 8$, todėl po suplojimo gaunamas $128 \cdot 8 \cdot 8 = 8192$ dydžio vektorius, kuris paduodamas į $256$ neuronų paslėptąjį sluoksnį, o galiausiai – į $2$ neuronų išėjimo sluoksnį (klasės \textit{chihuahua} ir \textit{muffin}). Sluoksnių parametrai pateikti \ref{tab:image_cnn_architecture} lentelėje.
+
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/tables/image_cnn_architecture}

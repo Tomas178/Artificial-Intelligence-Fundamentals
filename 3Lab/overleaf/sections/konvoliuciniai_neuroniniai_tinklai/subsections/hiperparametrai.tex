@@ -1,0 +1,9 @@
+\subsection{Hiperparametrai}
+\label{subsec:hiperparametrai}
+
+Visiems eksperimentams bendrosios mokymo hiperparametrų reikšmės yra fiksuotos: paketo dydis (angl.~\textit{batch size}) – $64$, epochų skaičius – $20$, mokymosi greitis (angl.~\textit{learning rate}) – $10^{-3}$, paklaidos funkcija – \textit{Cross Entropy}, optimizavimo algoritmas – \textit{Adam}, branduolio dydis – $3$, telkimo dydis – $2$. Šios reikšmės keičiamos tik tuose tyrimuose, kurie skirti būtent tam hiperparametrui įvertinti. Bendrieji hiperparametrai surinkti \ref{tab:hiperparametrai_bendri} lentelėje, o tyrimuose varijuojamos reikšmės – \ref{tab:hiperparametrai_tyrimai} lentelėje.
+
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/tables/hiperparametrai_bendri}
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/tables/hiperparametrai_tyrimai}
+
+Atsitiktinių skaičių generatoriaus pradinė reikšmė (angl.~\textit{seed}) buvo fiksuota ($seed = 42$) duomenų dalijime ir poaibių formavime, kad eksperimentų rezultatai būtų atkartojami.

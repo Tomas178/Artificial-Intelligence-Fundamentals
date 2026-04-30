@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \caption{Bendrosios (fiksuotos) hiperparametrų reikšmės abiem tinklams.}
+    \begin{tabular}{|l|l|}
+        \hline
+        Hiperparametras & Reikšmė \\
+        \hline
+        Paketo dydis (\textit{batch size}) & $64$ \\ \hline
+        Epochų skaičius & $20$ \\ \hline
+        Mokymosi greitis (\textit{learning rate}) & $10^{-3}$ \\ \hline
+        Optimizavimo algoritmas & \textit{Adam} \\ \hline
+        Paklaidos funkcija & \textit{Cross Entropy} \\ \hline
+        Aktyvacijos funkcija & \textit{ReLU} \\ \hline
+        Branduolio dydis (\textit{kernel}) & $3$ \\ \hline
+        Telkimo dydis (\textit{pool}) & $2$ \\ \hline
+        \texttt{padding} konvoliucijose & $1$ \\ \hline
+        \textit{Dropout} tikimybė (bazinė) & $0{,}0$ \\ \hline
+        Paketinis normalizavimas (bazinė) & išjungta \\ \hline
+        Pradinė \textit{seed} reikšmė & $42$ \\ \hline
+    \end{tabular}
+    \label{tab:hiperparametrai_bendri}
+\end{table}
