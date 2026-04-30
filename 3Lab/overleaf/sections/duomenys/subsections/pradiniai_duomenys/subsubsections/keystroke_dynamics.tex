@@ -1,0 +1,19 @@
+\subsubsection{Laiko eilučių duomenų aibė – CMU Keystroke Dynamics}
+\label{subsubsec:keystroke_dynamics}
+
+ Aibę \cite{keystroke_dynamics} sudaro klaviatūros paspaudimų laiko žymos, surinktos iš $51$ tipografo (subjekto), kurių kiekvienas $400$ kartų rinko tą pačią slaptažodžio eilutę \texttt{tie5Roanl} (laikomą stipriu $10$ simbolių slaptažodžiu). Duomenys surinkti per $8$ sesijas (po $50$ pakartojimų kiekvienoje), tarp sesijų išlaikant bent vienos dienos pertrauką, kad būtų užfiksuota natūrali kasdieninė rinkimo ritmo variacija.
+
+Iš viso aibę sudaro $20\,400$ įrašų ir $34$ stulpeliai. Pirmieji trys stulpeliai yra metaduomenys: subjektas (angl. \textit{subject}), pvz., \texttt{s008}, sesijos numeris (angl. \textit{sessionIndex}), $1$–$8$ ir pakartojimo numeris sesijoje \textit{rep}, $1$–$50$. Likę $31$ stulpelis – tai laiko požymiai, susiję su slaptažodžio rinkimu:
+\begin{itemize}
+    \item \textbf{Hold time} (\texttt{H.key}) – klavišo laikymo laikas (nuo paspaudimo iki atleidimo);
+    \item \textbf{Keydown-keydown time} (\texttt{DD.key1.key2}) – laikas tarp dviejų gretimų klavišų paspaudimų;
+    \item \textbf{Keyup-keydown time} (\texttt{UD.key1.key2}) – laikas nuo pirmojo klavišo atleidimo iki kito klavišo paspaudimo (gali būti neigiamas).
+\end{itemize}
+Galioja sąryšis $H + UD = DD$. Visos laiko reikšmės pateiktos sekundėmis, jų matavimo tikslumas $\pm 200$ mikrosekundžių (naudotas išorinis etaloninis laikrodis). Trūkstamų reikšmių aibėje nėra. Pavyzdys ir stulpelių aprašymas pateikti \ref{tab:keystroke_pradiniai_duomenys} bei \ref{tab:keystroke_stulpeliu_aprasymas} lentelėse.
+
+\input{3Lab/overleaf/sections/duomenys/tables/keystroke_dynamics_pradiniai_duomenys}
+\input{3Lab/overleaf/sections/duomenys/tables/keystroke_dynamics_stulpeliu_aprasymas}
+
+Apibendrinta informacija apie laiko eilučių duomenų aibę pateikta \ref{tab:keystroke_suvestine} lentelėje.
+
+\input{3Lab/overleaf/sections/duomenys/tables/keystroke_suvestine}
