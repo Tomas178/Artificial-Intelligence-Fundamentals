@@ -1,0 +1,18 @@
+\section{Klasifikavimo pavyzdžiai}
+\label{sec:pavyzdziu_klasifikacija}
+
+Iš testavimo aibės parinkta po $30$ įrašų abiem užduotims; jiems geriausias modelis (žr.~\ref{sec:geriausias_modelis} sk.) suformulavo spėjimą. Įrašai paimti iš testavimo \texttt{DataLoader}'io pirmojo paketo (\texttt{batch\_size}~$=64$). Žaliai pažymėti teisingai klasifikuoti įrašai, raudonai – klaidingai.
+
+\subsection{Vaizdų pavyzdžiai}
+\label{subsec:pavyzdziai_vaizdai}
+
+\input{3Lab/overleaf/sections/pavyzdziu_klasifikacija/tables/image_samples}
+
+Iš $30$ pavyzdžių $27$ klasifikuoti teisingai ($90\,\%$), $3$ – klaidingai. Visos klaidos buvo \textit{muffin}~$\rightarrow$ \textit{chihuahua} arba atvirkščiai – tai nestebina, nes tai yra binarinė užduotis su dažnai vizualiai panašiais objektais (rusvi keksiukai ir mažo dydžio rusvi šuniukai).
+
+\subsection{Laiko eilučių pavyzdžiai}
+\label{subsec:pavyzdziai_keystroke}
+
+\input{3Lab/overleaf/sections/pavyzdziu_klasifikacija/tables/keystroke_samples}
+
+Iš $30$ pavyzdžių $27$ klasifikuoti teisingai ($90\,\%$). Pavyzdžiai apima $21$ skirtingą klasę iš $30$ – ne visos klasės pateko į pirmąjį $30$ įrašų pošalį, nes \texttt{Trainer.get\_sample\_predictions} ima iš pirmųjų testavimo paketų, neužtikrindamas klasių subalansavimo.

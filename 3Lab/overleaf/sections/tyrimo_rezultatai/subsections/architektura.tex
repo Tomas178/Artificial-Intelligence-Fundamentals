@@ -1,0 +1,26 @@
+\subsection{Architektūros įtaka}
+\label{subsec:rez_architektura}
+
+Lyginamos trys konvoliucinių blokų konfigūracijos kiekvienai užduočiai (žr.~\ref{tab:rez_architektura} lentelę). Validavimo metrikų kitimas per epochas pateiktas \ref{fig:rez_architektura_image} ir~\ref{fig:rez_architektura_keystroke} pav.
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/tables/architektura}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/architecture/img_comparison.png}
+    \caption{Architektūros tyrimas – vaizdų užduotis}
+    \label{fig:rez_architektura_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/architecture/ks_comparison.png}
+    \caption{Architektūros tyrimas – laiko eilučių užduotis}
+    \label{fig:rez_architektura_keystroke}
+\end{figure}
+
+Pastebimi rezultatai:
+\begin{itemize}
+    \item Vaizdams \textbf{vidutinė architektūra} \texttt{(32, 64, 128)} pasiekė didžiausią validavimo tikslumą ($0{,}8413$), tačiau didžiausias \texttt{test\_acc} ($0{,}8432$) buvo gautas su \textbf{didele} \texttt{(64, 128, 256)} architektūra – tai rodo, kad gilesnis tinklas geriau generalizuoja, nors validavimo aibėje šiek tiek labiau persimokė.
+    \item Laiko eilutėms didžiausią validavimo tikslumą gavo \texttt{(64, 128)} architektūra ($0{,}6917$). Dvigubinant filtrų skaičių iki \texttt{(64, 128, 256)} tinklas pradeda sparčiai persimokyti – $1\,500$ įrašų aibei tai per gilus modelis.
+\end{itemize}

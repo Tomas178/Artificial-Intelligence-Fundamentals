@@ -1,0 +1,20 @@
+\begin{table}[H]
+    \centering
+    \caption{Architektūros tyrimo rezultatai. Geriausi variantai paryškinti.}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Užduotis & Variantas & \texttt{val\_acc} & \texttt{val\_loss} & \texttt{test\_acc} \\
+        \hline
+        \multirow{3}{*}{Vaizdai}
+            & Small \texttt{(16, 32)}        & $0{,}8254$ & $0{,}4955$ & $0{,}8305$ \\ \cline{2-5}
+            & \textbf{Medium \texttt{(32, 64, 128)}} & $\mathbf{0{,}8413}$ & $\mathbf{0{,}8387}$ & $0{,}8178$ \\ \cline{2-5}
+            & \textbf{Large \texttt{(64, 128, 256)}} & $0{,}8201$ & $0{,}4792$ & $\mathbf{0{,}8432}$ \\
+        \hline
+        \multirow{3}{*}{Laiko eilutės}
+            & Small \texttt{(32,)}           & $0{,}6792$ & $1{,}5507$ & $0{,}7467$ \\ \cline{2-5}
+            & \textbf{Medium \texttt{(64, 128)}} & $\mathbf{0{,}6917}$ & $\mathbf{1{,}0635}$ & $0{,}7200$ \\ \cline{2-5}
+            & Large \texttt{(64, 128, 256)}  & $0{,}6042$ & $1{,}4302$ & $0{,}6233$ \\
+        \hline
+    \end{tabular}
+    \label{tab:rez_architektura}
+\end{table}

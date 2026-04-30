@@ -1,0 +1,14 @@
+\begin{table}[H]
+    \centering
+    \caption{Geriausio modelio testavimo rezultatai abiem užduotims.}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        Užduotis & Klasių & Konfigūracija & \texttt{test\_acc} & \texttt{test\_loss} \\
+        \hline
+        Vaizdai (\textit{Muffin vs. Chihuahua})       & $2$  & \texttt{ImageCNN} su BN     & $\mathbf{0{,}8970}$ & $0{,}3292$ \\
+        \hline
+        Laiko eilutės (\textit{CMU Keystroke})         & $30$ & \texttt{KeystrokeCNN} su BN & $\mathbf{0{,}9167}$ & $0{,}3881$ \\
+        \hline
+    \end{tabular}
+    \label{tab:best_model_summary}
+\end{table}

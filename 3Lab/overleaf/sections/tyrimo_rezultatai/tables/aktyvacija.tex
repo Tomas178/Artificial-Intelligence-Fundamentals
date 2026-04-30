@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \caption{Aktyvacijos funkcijos tyrimo rezultatai. Geriausi variantai paryškinti.}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Užduotis & Funkcija & \texttt{val\_acc} & \texttt{val\_loss} & \texttt{test\_acc} \\
+        \hline
+        \multirow{4}{*}{Vaizdai}
+            & \textit{ReLU}        & $0{,}8307$ & $0{,}7279$ & $0{,}8390$ \\ \cline{2-5}
+            & \textbf{\textit{LeakyReLU}}  & $0{,}8360$ & $\mathbf{0{,}4455}$ & $\mathbf{0{,}8517}$ \\ \cline{2-5}
+            & \textit{Tanh}        & $0{,}8201$ & $0{,}4460$ & $0{,}7966$ \\ \cline{2-5}
+            & \textbf{\textit{ELU}} & $\mathbf{0{,}8413}$ & $0{,}5705$ & $0{,}8008$ \\
+        \hline
+        \multirow{4}{*}{Laiko eilutės}
+            & \textit{ReLU}        & $0{,}6500$ & $1{,}2921$ & $0{,}6533$ \\ \cline{2-5}
+            & \textit{LeakyReLU}   & $0{,}7583$ & $0{,}9012$ & $0{,}7800$ \\ \cline{2-5}
+            & \textbf{\textit{Tanh}} & $\mathbf{0{,}8000}$ & $\mathbf{0{,}7076}$ & $\mathbf{0{,}8333}$ \\ \cline{2-5}
+            & \textit{ELU}         & $0{,}7708$ & $0{,}7677$ & $0{,}8100$ \\
+        \hline
+    \end{tabular}
+    \label{tab:rez_aktyvacija}
+\end{table}

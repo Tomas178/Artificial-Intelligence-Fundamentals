@@ -1,0 +1,27 @@
+\subsection{\textit{Dropout} tikimybės įtaka}
+\label{subsec:rez_dropout}
+
+Tikrinamos keturios \textit{Dropout} tikimybės: $0$, $0{,}25$, $0{,}5$ ir $0{,}75$. Architektūra pagal nutylėjimą (vaizdams \texttt{(32, 64, 128)}, laiko eilutėms \texttt{(64, 128)}). Rezultatai pateikti~\ref{tab:rez_dropout} lentelėje, validavimo metrikos – \ref{fig:rez_dropout_image} ir~\ref{fig:rez_dropout_keystroke} pav.
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/tables/dropout}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/dropout/img_comparison.png}
+    \caption{\textit{Dropout} tyrimas – vaizdų užduotis}
+    \label{fig:rez_dropout_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/dropout/ks_comparison.png}
+    \caption{\textit{Dropout} tyrimas – laiko eilučių užduotis}
+    \label{fig:rez_dropout_keystroke}
+\end{figure}
+
+Pastebimi rezultatai:
+\begin{itemize}
+    \item Abiem užduotims \textbf{tikimybė $0{,}0$} davė geriausią validavimo tikslumą, nes mokymo aibės yra nedidelės ir tinklas nepasiekia stipraus persimokymo. Padidinus tikimybę iki $0{,}5$ tikslumas krenta, bet ne katastrofiškai.
+    \item \textbf{Tikimybė $0{,}75$} sunaikina mokymo signalą – laiko eilučių modelis nepasiekia net $10\,\%$ tikslumo (kas yra atsitiktinio spėjimo lygis $30$ klasių užduotyje).
+    \item Vaizdams su \texttt{Dropout}~$=0{,}5$ \texttt{val\_loss} ($0{,}4459$) yra mažiausias, todėl jei svarbi prognozės pasitikėjimo kalibracija, ši tikimybė geriausia – tačiau kelia mažesnį tikslumą.
+\end{itemize}

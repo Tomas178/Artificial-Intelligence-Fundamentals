@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \caption{\textit{Dropout} tikimybės tyrimo rezultatai. Geriausi variantai paryškinti.}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Užduotis & Tikimybė & \texttt{val\_acc} & \texttt{val\_loss} & \texttt{test\_acc} \\
+        \hline
+        \multirow{4}{*}{Vaizdai}
+            & \textbf{$0{,}00$} & $\mathbf{0{,}8466}$ & $0{,}8865$ & $\mathbf{0{,}8347}$ \\ \cline{2-5}
+            & $0{,}25$ & $0{,}8095$ & $0{,}4478$ & $0{,}8093$ \\ \cline{2-5}
+            & $0{,}50$ & $0{,}7989$ & $\mathbf{0{,}4459}$ & $0{,}7924$ \\ \cline{2-5}
+            & $0{,}75$ & $0{,}6667$ & $0{,}6780$ & $0{,}5763$ \\
+        \hline
+        \multirow{4}{*}{Laiko eilutės}
+            & \textbf{$0{,}00$} & $\mathbf{0{,}7125}$ & $\mathbf{0{,}9609}$ & $\mathbf{0{,}7533}$ \\ \cline{2-5}
+            & $0{,}25$ & $0{,}6750$ & $1{,}1523$ & $0{,}7167$ \\ \cline{2-5}
+            & $0{,}50$ & $0{,}6000$ & $1{,}6406$ & $0{,}6767$ \\ \cline{2-5}
+            & $0{,}75$ & $0{,}0917$ & $3{,}3900$ & $0{,}0600$ \\
+        \hline
+    \end{tabular}
+    \label{tab:rez_dropout}
+\end{table}

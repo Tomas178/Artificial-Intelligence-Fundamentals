@@ -1,0 +1,27 @@
+\subsection{Optimizavimo algoritmo įtaka}
+\label{subsec:rez_optimizatorius}
+
+Lyginami keturi optimizavimo algoritmai: \textit{Adam}, \textit{AdamW}, \textit{RMSprop} ir \textit{SGD} (be momentumo). Visų algoritmų \texttt{learning\_rate}~$=10^{-3}$. Rezultatai pateikti~\ref{tab:rez_optimizatorius} lentelėje, validavimo metrikų kitimas – \ref{fig:rez_optimizatorius_image} ir~\ref{fig:rez_optimizatorius_keystroke} pav.
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/tables/optimizatorius}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/optimizer/img_comparison.png}
+    \caption{Optimizavimo algoritmo tyrimas – vaizdų užduotis}
+    \label{fig:rez_optimizatorius_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/optimizer/ks_comparison.png}
+    \caption{Optimizavimo algoritmo tyrimas – laiko eilučių užduotis}
+    \label{fig:rez_optimizatorius_keystroke}
+\end{figure}
+
+Pastebimi rezultatai:
+\begin{itemize}
+    \item \textit{Adam}, \textit{AdamW} ir \textit{RMSprop} gauna labai panašius rezultatus, nes visi naudoja adaptyvų mokymosi greitį pagal kiekvieno svorio gradiento istoriją.
+    \item \textit{SGD} su tokia pačia $10^{-3}$ vertė ryškiai atsilieka – ypač $30$ klasių laiko eilučių užduotyje, kur \texttt{test\_acc}~$=0{,}0333$ (atsitiktinis spėjimas). Kad \textit{SGD} dirbtų konkurencingai, reikėtų paskaičiuoti tinkamą \texttt{learning\_rate} ir/arba pridėti momentumą.
+    \item Pagal numatytąsias hiperparametrų reikšmes \textit{Adam} išlieka saugus pasirinkimas abiem užduotims.
+\end{itemize}

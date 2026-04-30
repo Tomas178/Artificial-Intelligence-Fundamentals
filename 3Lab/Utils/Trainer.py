@@ -141,7 +141,7 @@ class Trainer:
 		return samples
 
 	def plot_history(self, title='Training History', save_path=None):
-		fig, (loss_ax, accuracy_ax) = plt.subplots(1, 2, figsize=(14, 5))
+		_, (loss_ax, accuracy_ax) = plt.subplots(1, 2, figsize=(14, 5))
 
 		loss_ax.plot(self.history['train_loss'], label='Train')
 		loss_ax.plot(self.history['val_loss'], label='Validation')
@@ -185,7 +185,7 @@ class Trainer:
 
 	@staticmethod
 	def plot_comparison(results, title, save_path=None):
-		fig, (loss_ax, accuracy_ax) = plt.subplots(1, 2, figsize=(14, 5))
+		_, (loss_ax, accuracy_ax) = plt.subplots(1, 2, figsize=(14, 5))
 
 		for experiment_name, history in results.items():
 			loss_ax.plot(history['val_loss'], label=experiment_name)

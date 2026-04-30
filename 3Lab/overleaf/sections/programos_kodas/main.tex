@@ -1,8 +1,29 @@
-\section{Programos kodas su išsamiais komentarais}
+\section{Programos kodas}
 \label{sec:programos_kodas}
 
-Žemiau (žr.~\ref{subsec:data_cleaner} –~\ref{subsec:sigmoid_neuron} sk.) pateikiami kiekvienos svarbios klasės kodai bei komentarai apie juos.
+Šiame skyriuje pateikiami svarbiausių klasių kodo fragmentai su komentarais. Pilnas projekto kodas pasiekiamas projekto saugykloje, šaltinis: \texttt{https://github.com/Tomas178/dirbtinio\_intelekto\_pagrindai} (katalogas \texttt{3Lab/}). Kodo struktūra suskaidyta į modulius pagal atsakomybę:
+\begin{itemize}
+    \item \texttt{DataSplitter/} – pradinio duomenų rinkinio padalijimas į \textit{train}, \textit{validation} ir \textit{test} aibes.
+    \item \texttt{DataReader/} – paruoštų aibių užkrovimas į \texttt{torch} duomenų objektus.
+    \item \texttt{Models/} – konvoliucinių neuroninių tinklų architektūros (\texttt{BaseCNN}, \texttt{ImageCNN}, \texttt{KeystrokeCNN}).
+    \item \texttt{Utils/} – pagalbinės klasės (\texttt{Trainer}, \texttt{KeystrokeDataset}, \texttt{get\_device}).
+    \item \texttt{Enums/} – enumeracijos su palaikomais aktyvavimo, optimizavimo ir nuostolių algoritmais.
+    \item \texttt{main.py} – eksperimentų vykdymas ir geriausio modelio įvertinimas.
+\end{itemize}
 
-\input{2Lab/overleaf/sections/programos_kodas/codes_and_comments/DataCleaner_Class/main}
-\input{2Lab/overleaf/sections/programos_kodas/codes_and_comments/DataSplitter_Class/main}
-\input{2Lab/overleaf/sections/programos_kodas/codes_and_comments/SigmoidNeuron_Class/main}
+\subsection{Dirbtinio intelekto įrankių naudojimas}
+\label{subsec:di_panaudojimas}
+
+Visa programos architektūra (klasių išskaidymas, paveldėjimo hierarchija \texttt{BaseCNN}~$\rightarrow$ \texttt{ImageCNN} / \texttt{KeystrokeCNN}, eksperimentų orkestracija) sugalvota ir suprogramuota paties autoriaus. Dirbtinio intelekto pagalbinis įrankis Claude~\cite{claude_bendrai} buvo naudotas tik šioms konkrečioms vietoms:
+\begin{itemize}
+    \item \texttt{Trainer.plot\_history}, \texttt{Trainer.plot\_confusion\_matrix} ir \texttt{Trainer.plot\_comparison} metodų \texttt{matplotlib} / \texttt{seaborn} kvietimo šablonams suformuluoti.
+    \item Min-max normalizavimo formulei su $\varepsilon$ apsauga (\texttt{KeystrokeDataSplitter.\_normalize}) suformuluoti.
+    \item \LaTeX\ ataskaitos lentelėms ir kelioms iliustracijoms (\textit{šis dokumentas}) sutvarkyti.
+\end{itemize}
+Visi modeliai, mokymo ciklas, duomenų skaitymo ir dalijimo logika rašyta ranka, pasiremiant \texttt{PyTorch}, \texttt{torchvision} ir \texttt{scikit-learn} oficialia dokumentacija.
+
+\input{3Lab/overleaf/sections/programos_kodas/codes_and_comments/ImageDataReader_Class/main}
+\input{3Lab/overleaf/sections/programos_kodas/codes_and_comments/KeystrokeDataSplitter_Class/main}
+\input{3Lab/overleaf/sections/programos_kodas/codes_and_comments/BaseCNN_Class/main}
+\input{3Lab/overleaf/sections/programos_kodas/codes_and_comments/Trainer_Class/main}
+\input{3Lab/overleaf/sections/programos_kodas/codes_and_comments/Main_Orchestration/main}

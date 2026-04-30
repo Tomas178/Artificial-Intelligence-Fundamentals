@@ -2,9 +2,14 @@
 \label{sec:isvados}
 
 \begin{enumerate}
-    \item Sigmoidinis neuronas sėkmingai išmoko klasifikuoti krūties vėžio duomenis – geriausias modelis pasiekė $99{,}1\ \%$ validavimo ir $95{,}6\ \%$ testavimo tikslumą.
-    \item Stochastinis gradientinis nusileidimas pasiekė mažesnę paklaidą ir aukštesnį validavimo tikslumą nei paketinis, tačiau paketinis metodas geriau generalizavo testavimo duomenims ($97{,}1\ \%$ prieš $95{,}6\ \%$).
-    \item Paketinis gradientinis nusileidimas yra jautresnis mokymosi greičio parinkimui – su $\eta = 0{,}01$ validavimo tikslumas siekė tik $81{,}8\ \%$, tuo tarpu stochastinis metodas visais atvejais pasiekė $99{,}1\ \%$.
-    \item Mokymo laikas abiem metodams buvo panašus, tačiau stochastinis metodas didėjant epochų skaičiui tampa greitesnis.
-    \item Iš $137$ testavimo įrašų $6$ buvo klasifikuoti neteisingai – $3$ nepiktybiniai navikai priskirti piktybiniams ir $3$ piktybiniai priskirti nepiktybiniams.
+    \item Konvoliuciniai neuroniniai tinklai sėkmingai pritaikyti abiem užduotims – $2$ klasių vaizdų klasifikavimui (\textit{Muffin vs. Chihuahua}, $\texttt{test\_acc}=0{,}8970$) ir $30$ klasių laiko eilučių klasifikavimui (CMU \textit{Keystroke Dynamics}, $\texttt{test\_acc}=0{,}9167$).
+    \item Iš visų penkių tirtų hiperparametrų \textbf{didžiausią poveikį turėjo paketinis normalizavimas} – pridėjus BN sluoksnius, vaizdų validavimo tikslumas pakilo nuo $0{,}8360$ iki $0{,}8942$, o laiko eilučių – nuo $0{,}6750$ iki $0{,}9167$. Todėl būtent ši konfigūracija parinkta galutiniam modeliui.
+    \item Architektūros tyrimas parodė, kad gilumo ir parametrų skaičiaus didinimas duoda mažėjančią naudą: vaizdams skirtumas tarp $\texttt{(16, 32)}$ ir $\texttt{(64, 128, 256)}$ siekia tik kelis procentinius punktus, o laiko eilutėms didžiausias modelis pradeda persimokyti.
+    \item \textit{Dropout} tikimybė šios apimties duomenims nebuvo naudinga – geriausi rezultatai gauti su $0{,}0$, nes mokymo aibės nedidelės ir tinklas nepasiekia stipraus persimokymo per $20$ epochų.
+    \item Aktyvacijos funkcijos parinkimas svarbiausias laiko eilutėms: \textit{Tanh} su normalizuotais $[0,\,1]$ požymiais ($\texttt{val\_acc}=0{,}80$) aiškiai pranoko \textit{ReLU} ($0{,}65$). Vaizdams visos keturios funkcijos veikia panašiai.
+    \item Optimizatoriaus tyrimas patvirtino, kad adaptyvūs algoritmai (\textit{Adam}, \textit{AdamW}, \textit{RMSprop}) yra praktiškai lygiaverčiai numatytiesiems hiperparametrams, o klasikinis \textit{SGD} su $\texttt{lr}=10^{-3}$ be momentumo neapmoko $30$ klasių užduoties (testavimo tikslumas lygus atsitiktinio spėjimo lygiui).
+    \item $30$ pavyzdžių klasifikavimo lentelės ($90\,\%$ teisingų abiem užduotims) patvirtina, kad pasirinkti modeliai bendrauja su tiek lengvai, tiek sudėtingiau klasifikuojamomis klasėmis.
+    \item Visos vaizdų klaidos buvo \textit{muffin}~$\leftrightarrow$ \textit{chihuahua} sumaišymai – tai tikėtina, nes daug rusvos spalvos keksiukų vizualiai panašūs į mažus rusvus šuniukus. Laiko eilučių klaidos pasiskirsčiusios tarp skirtingų subjektų ir neturi vienos krypties.
+    \item Bendras eksperimentų vykdymo laikas CPU režimu siekė $1{,}42$ valandos. Vaizdams reikėjo taikyti pošalio (\textit{subset}) mechanizmą – be jo eksperimentų eiga būtų netilpusi į praktines laiko ribas.
+    \item Tolimesniems patobulinimams perspektyviausios kryptys yra: (i) augmentacijos (\textit{flip}, \textit{rotation}, \textit{color jitter}) vaizdų aibei, (ii) ilgesnis mokymas su mokymosi greičio mažinimo tvarkaraščiu, (iii) gilesnis hiperparametrų derinimas (pvz., kombinuojant BN su \textit{Tanh} ir didesne aibe).
 \end{enumerate}

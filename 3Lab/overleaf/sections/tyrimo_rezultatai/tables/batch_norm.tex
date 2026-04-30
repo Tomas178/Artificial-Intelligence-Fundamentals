@@ -1,0 +1,18 @@
+\begin{table}[H]
+    \centering
+    \caption{Paketinio normalizavimo tyrimo rezultatai. Geriausi variantai paryškinti.}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Užduotis & Variantas & \texttt{val\_acc} & \texttt{val\_loss} & \texttt{test\_acc} \\
+        \hline
+        \multirow{2}{*}{Vaizdai}
+            & Be BN     & $0{,}8360$ & $0{,}6696$ & $0{,}8432$ \\ \cline{2-5}
+            & \textbf{Su BN} & $\mathbf{0{,}8942}$ & $\mathbf{0{,}3272}$ & $\mathbf{0{,}8602}$ \\
+        \hline
+        \multirow{2}{*}{Laiko eilutės}
+            & Be BN     & $0{,}6750$ & $1{,}2623$ & $0{,}7167$ \\ \cline{2-5}
+            & \textbf{Su BN} & $\mathbf{0{,}9167}$ & $\mathbf{0{,}2516}$ & $\mathbf{0{,}9033}$ \\
+        \hline
+    \end{tabular}
+    \label{tab:rez_batch_norm}
+\end{table}

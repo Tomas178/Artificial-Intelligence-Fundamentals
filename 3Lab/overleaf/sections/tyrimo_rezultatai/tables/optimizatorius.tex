@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \caption{Optimizavimo algoritmo tyrimo rezultatai. Geriausi variantai paryškinti.}
+    \begin{tabular}{|l|l|c|c|c|}
+        \hline
+        Užduotis & Algoritmas & \texttt{val\_acc} & \texttt{val\_loss} & \texttt{test\_acc} \\
+        \hline
+        \multirow{4}{*}{Vaizdai}
+            & \textbf{\textit{Adam}}    & $\mathbf{0{,}8466}$ & $0{,}6524$ & $0{,}8347$ \\ \cline{2-5}
+            & \textit{SGD}              & $0{,}5503$ & $0{,}6801$ & $0{,}5424$ \\ \cline{2-5}
+            & \textbf{\textit{RMSprop}} & $\mathbf{0{,}8466}$ & $0{,}4883$ & $0{,}8390$ \\ \cline{2-5}
+            & \textit{AdamW}            & $0{,}8413$ & $\mathbf{0{,}4512}$ & $\mathbf{0{,}8432}$ \\
+        \hline
+        \multirow{4}{*}{Laiko eilutės}
+            & \textit{Adam}             & $0{,}6708$ & $1{,}1537$ & $0{,}7067$ \\ \cline{2-5}
+            & \textit{SGD}              & $0{,}0333$ & $3{,}4034$ & $0{,}0333$ \\ \cline{2-5}
+            & \textbf{\textit{RMSprop}} & $\mathbf{0{,}7042}$ & $\mathbf{1{,}1310}$ & $\mathbf{0{,}7300}$ \\ \cline{2-5}
+            & \textit{AdamW}            & $0{,}6833$ & $1{,}1355$ & $0{,}7200$ \\
+        \hline
+    \end{tabular}
+    \label{tab:rez_optimizatorius}
+\end{table}

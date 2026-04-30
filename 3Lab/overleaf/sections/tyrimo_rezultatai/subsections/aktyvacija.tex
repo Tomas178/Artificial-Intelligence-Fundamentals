@@ -1,0 +1,26 @@
+\subsection{Aktyvacijos funkcijos įtaka}
+\label{subsec:rez_aktyvacija}
+
+Lyginamos keturios aktyvacijos funkcijos: \textit{ReLU}, \textit{LeakyReLU} ($\alpha = 0{,}01$), \textit{Tanh} ir \textit{ELU}. Rezultatai pateikti~\ref{tab:rez_aktyvacija} lentelėje, validavimo metrikų kitimas – \ref{fig:rez_aktyvacija_image} ir~\ref{fig:rez_aktyvacija_keystroke} pav.
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/tables/aktyvacija}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/activation/img_comparison.png}
+    \caption{Aktyvacijos funkcijos tyrimas – vaizdų užduotis}
+    \label{fig:rez_aktyvacija_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/activation/ks_comparison.png}
+    \caption{Aktyvacijos funkcijos tyrimas – laiko eilučių užduotis}
+    \label{fig:rez_aktyvacija_keystroke}
+\end{figure}
+
+Pastebimi rezultatai:
+\begin{itemize}
+    \item Vaizdams visos funkcijos veikia panašiai (\texttt{val\_acc} svyruoja $0{,}82$–$0{,}84$ ribose). Geriausią validavimo tikslumą gavo \textit{ELU}, didžiausią testavimo tikslumą – \textit{LeakyReLU}.
+    \item Laiko eilutėms ryškiai išsiskiria \textit{Tanh} – ji geriausiai tinka normalizuotiems $[0,\,1]$ požymiams ($30$ klasių užduotyje pasiekė $\texttt{test\_acc}=0{,}8333$). \textit{ReLU} čia atrodo prasčiausiai – atsineša „mirštančio neurono“ problemą, kai didelė įėjimo verčių dalis yra arti nulio.
+\end{itemize}
