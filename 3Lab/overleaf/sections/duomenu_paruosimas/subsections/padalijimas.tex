@@ -3,11 +3,11 @@
 
 Mokymui, validavimui ir testavimui naudojamos atskiros aibės be persidengimų. Abi užduotys dalijamos su fiksuotu \textit{seed} $= 42$.
 
-\textbf{Vaizdai.} Iš \texttt{train} aplanko stratifikuotai atskiriama $20\,\%$ vaizdų į validavimo aibę, testavimo aibė lieka nepakitusi. Po pošalio (\textit{subset}) mechanizmo gauti aibių dydžiai pateikti \ref{tab:image_split} lentelėje.
+\textbf{Vaizdai.} Iš \texttt{train} aplanko stratifikuotai atskiriama $20\ \%$ vaizdų į validavimo aibę, testavimo aibė lieka nepakitusi. Po poaibių sudarymo gauti aibių dydžiai pateikti \ref{tab:image_split} lentelėje.
 
 \input{3Lab/overleaf/sections/duomenu_paruosimas/tables/image_split}
 
-\textbf{Laiko eilutės.} Atrinktoji $1\,500$ įrašų aibė skaidoma dviem stratifikuotais žingsniais (per \texttt{sklearn.model\_selection.train\_test\_split} su \texttt{stratify=y}): pirmas – $80\,\%$ mokymo + validavimo, $20\,\%$ testavimo; antras – mokymo + validavimo aibė toliau skaidoma į $80\,\%$ mokymo ir $20\,\%$ validavimo. Bendras santykis – $64{:}16{:}20$. Aibių dydžiai pateikti \ref{tab:keystroke_split} lentelėje.
+\textbf{Laiko eilutės.} Atrinktoji $1\,500$ įrašų aibė skaidoma dviem stratifikuotais žingsniais (per \texttt{sklearn.model\_selection.train\_test\_split} su \texttt{stratify=y}): pirmas – $80\ \%$ mokymo + validavimo, $20\,\%$ testavimo; antras – mokymo + validavimo aibė toliau skaidoma į $80\ \%$ mokymo ir $20\,\%$ validavimo. Bendras santykis – $64{:}16{:}20$. Aibių dydžiai pateikti \ref{tab:keystroke_split} lentelėje.
 
 \input{3Lab/overleaf/sections/duomenu_paruosimas/tables/keystroke_split}
 

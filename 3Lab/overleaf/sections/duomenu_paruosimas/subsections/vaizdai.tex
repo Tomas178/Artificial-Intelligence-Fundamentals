@@ -10,4 +10,4 @@ Pradinė „Muffin vs Chihuahua“ aibė atsisiunčiama jau padalinta į \texttt
 
 Validavimo aibė atskiriama klasėje \texttt{ImageDataSplitter}: iš kiekvienos klasės \texttt{train} aplanko atsitiktinai paimama $20\,\%$ failų ir perkeliama į naują \texttt{validation} aplanką, taip užtikrinant stratifikaciją pagal klases. Testavimo aibė lieka nepakitusi nuo pradinio šaltinio.
 
-Skaičiavimo resursams taupyti įgyvendintas papildomas pošalio (\textit{subset}) mechanizmas: kiekvienos aibės dydis dauginamas iš parametro \texttt{subset\_ratio}, atrenkant atsitiktinius indeksus per \texttt{torch.randperm} su fiksuotu \textit{seed}. Hiperparametrų tyrimuose naudotas $\texttt{subset\_ratio} = 0{,}2$, o galutiniame geriausio modelio įvertinime – $\texttt{subset\_ratio} = 0{,}5$.
+Skaičiavimo resursams taupyti buvo naudojama tik dalis duomenų iš visos duomenų aibės. Kiekvienos aibės dydis dauginamas iš parametro \texttt{subset\_ratio}, atrenkant atsitiktinius indeksus per \texttt{torch.randperm} su fiksuotu \textit{seed}. Hiperparametrų tyrimuose naudotas $\texttt{subset\_ratio} = 0{,}2$, o galutiniame geriausio modelio įvertinime – $\texttt{subset\_ratio} = 0{,}5$.

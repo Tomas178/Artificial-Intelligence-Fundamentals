@@ -10,6 +10,6 @@
     \item Optimizatoriaus tyrimas patvirtino, kad adaptyvūs algoritmai (\textit{Adam}, \textit{AdamW}, \textit{RMSprop}) yra praktiškai lygiaverčiai numatytiesiems hiperparametrams, o klasikinis \textit{SGD} su $\texttt{lr}=10^{-3}$ be momentumo neapmoko $30$ klasių užduoties (testavimo tikslumas lygus atsitiktinio spėjimo lygiui).
     \item $30$ pavyzdžių klasifikavimo lentelės ($90\,\%$ teisingų abiem užduotims) patvirtina, kad pasirinkti modeliai bendrauja su tiek lengvai, tiek sudėtingiau klasifikuojamomis klasėmis.
     \item Visos vaizdų klaidos buvo \textit{muffin}~$\leftrightarrow$ \textit{chihuahua} sumaišymai – tai tikėtina, nes daug rusvos spalvos keksiukų vizualiai panašūs į mažus rusvus šuniukus. Laiko eilučių klaidos pasiskirsčiusios tarp skirtingų subjektų ir neturi vienos krypties.
-    \item Bendras eksperimentų vykdymo laikas CPU režimu siekė $1{,}42$ valandos. Vaizdams reikėjo taikyti pošalio (\textit{subset}) mechanizmą – be jo eksperimentų eiga būtų netilpusi į praktines laiko ribas.
+    \item Bendras eksperimentų vykdymo laikas CPU režimu siekė $1{,}42$ valandos. Vaizdams reikėjo taikyti poaibį – be jo eksperimentų eiga būtų, su turimu kompiuteriu būtų buvusi per ilga kokybiškam darbui.
     \item Tolimesniems patobulinimams perspektyviausios kryptys yra: (i) augmentacijos (\textit{flip}, \textit{rotation}, \textit{color jitter}) vaizdų aibei, (ii) ilgesnis mokymas su mokymosi greičio mažinimo tvarkaraščiu, (iii) gilesnis hiperparametrų derinimas (pvz., kombinuojant BN su \textit{Tanh} ir didesne aibe).
 \end{enumerate}

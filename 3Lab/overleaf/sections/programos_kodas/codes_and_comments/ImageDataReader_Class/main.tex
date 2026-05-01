@@ -15,8 +15,8 @@ Klasės veikimo žingsniai:
     \item \texttt{transforms.Resize} suvienodina visus vaizdus į $64 \times 64$ raišką – tinklo įėjimo formatas turi būti pastovus.
     \item \texttt{transforms.ToTensor} konvertuoja \texttt{PIL.Image} į \texttt{torch.Tensor} ir pikselius perkelia į $[0,\,1]$ intervalą.
     \item \texttt{transforms.Normalize} standartizuoja kanalus pagal \textit{ImageNet} vidurkį ir standartinį nuokrypį, todėl tinklo svoriai pradeda mokytis stabilesnėje skaitinėje erdvėje.
-    \item \texttt{\_reduce\_dataset} atsitiktinai parenka \texttt{subset\_ratio} dalį indeksų ir grąžina \texttt{torch.utils.data.Subset}. Naudojamas atskiras \texttt{torch.Generator} su \texttt{seed = 42}, todėl pošalis kiekvieną kartą yra tas pats.
-    \item \texttt{read} paima visus tris \texttt{ImageFolder} aplankus (\textit{train}, \textit{validation}, \textit{test}) ir grąžina jų sumažintus pošalius.
+    \item \texttt{\_reduce\_dataset} atsitiktinai parenka \texttt{subset\_ratio} dalį indeksų ir grąžina \texttt{torch.utils.data.Subset}. Naudojamas atskiras \texttt{torch.Generator} su \texttt{seed = 42}, todėl poaibis kiekvieną kartą yra tas pats.
+    \item \texttt{read} paima visus tris \texttt{ImageFolder} aplankus (\textit{train}, \textit{validation}, \textit{test}) ir grąžina jų poaibius.
 \end{enumerate}
 
 Klasės kodas parašytas autoriaus, naudojantis oficialia \texttt{torchvision} dokumentacija. \textit{ImageNet} statistikos reikšmės paimtos iš \texttt{torchvision} oficialaus pavyzdžio kodo.

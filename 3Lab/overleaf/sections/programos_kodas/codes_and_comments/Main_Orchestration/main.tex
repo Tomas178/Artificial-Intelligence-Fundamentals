@@ -87,5 +87,5 @@ Pagrindinės funkcijos:
     \item \texttt{run\_study} – paleidžia visus eksperimentus, priklausančius vienam tyrimui, ir sugeneruoja palyginimo grafiką (\textit{val\_loss} ir \textit{val\_acc} priklausomybės nuo epochos).
     \item \texttt{run\_architecture\_experiments}, \texttt{run\_dropout\_experiments}, \texttt{run\_batch\_norm\_experiments}, \texttt{run\_activation\_experiments}, \texttt{run\_optimizer\_experiments} – penki tyrimai, atitinkantys užduoties reikalavimus (žr.~\ref{sec:tyrimo_rezultatai} sk.).
     \item \texttt{pick\_best} – iš visų $17$ eksperimentų variantų atrenka geriausią pagal didžiausią validavimo tikslumą ir mažiausią validavimo paklaidą (lygiosioms taikomas leksikografinis kriterijus).
-    \item \texttt{evaluate\_best\_model} – iš naujo apmoko geriausią konfigūraciją su didesniu vaizdų pošaliu (\texttt{subset\_ratio}~$=0{,}5$), išsaugo galutines istorijos ir klasifikavimo matricos vizualizacijas, atspausdina $30$ testinių pavyzdžių spėjimus.
+    \item \texttt{evaluate\_best\_model} – iš naujo apmoko geriausią konfigūraciją su didesniu vaizdų poaibiu (\texttt{subset\_ratio}~$=0{,}5$), išsaugo galutines istorijos ir klasifikavimo matricos vizualizacijas, atspausdina $30$ testinių pavyzdžių spėjimus.
 \end{itemize}

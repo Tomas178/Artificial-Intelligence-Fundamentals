@@ -20,9 +20,9 @@ Klasė \texttt{KeystrokeDataSplitter} iš pradinio CMU CSV failo paruošia \text
 Klasės veikimo žingsniai:
 \begin{enumerate}
     \item Iš pradinio CSV nuskaitomos $20\,400$ eilučių; paliekama tik viena sesija (\texttt{sessionIndex}~$=1$).
-    \item Iš likusių dalyvių abėcėline tvarka atrenkami pirmieji $30$ subjektai – gauname $30$ klasių klasifikavimo užduotį su $1\,500$ įrašų.
+    \item Iš likusių dalyvių pagal abėcėlę atrenkami pirmieji $30$ subjektai – gauname $30$ klasių klasifikavimo užduotį su $1\,500$ įrašų.
     \item Visi $31$ laikinis požymis normalizuojami min-max metodu į $[0,\,1]$. \texttt{EPSILON}~$=10^{-8}$ apsaugo nuo dalybos iš nulio, jei stulpelio reikšmės sutampa.
-    \item Atliekamas dvigubas stratifikuotas dalijimas (\texttt{stratify=y}): pirmas – $80\,\%$ \textit{train+val} ir $20\,\%$ \textit{test}; antras – iš \textit{train+val} aibės dar $80\,\%$ / $20\,\%$ į \textit{train} ir \textit{validation}. Bendras santykis – $64{:}16{:}20$.
+    \item Atliekamas dvigubas stratifikuotas dalijimas (\texttt{stratify=y}): pirmas – $80\ \%$ \textit{train+val} ir $20\ \%$ \textit{test}; antras – iš \textit{train+val} aibės dar $80\,\%$ / $20\,\%$ į \textit{train} ir \textit{validation}. Bendras santykis – $64{:}16{:}20$.
     \item Trys gautos aibės įrašomos į atskirus CSV failus, iš kurių vėliau \texttt{KeystrokeDataReader} užkrauna duomenis į \texttt{KeystrokeDataset}.
 \end{enumerate}
 
