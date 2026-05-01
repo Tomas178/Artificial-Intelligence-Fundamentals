@@ -1,7 +1,7 @@
 \subsection{Laiko eilučių duomenų dalijimo klasė}
 \label{subsec:keystroke_data_splitter}
 
-Klasė \texttt{KeystrokeDataSplitter} iš pradinio CMU CSV failo paruošia \textit{train}, \textit{validation} ir \textit{test} aibes: pasirenka subjektus, normalizuoja požymius ir stratifikuotai padalija duomenis (žr.~\ref{fig:keystroke_data_splitter_class_first} ir \ref{fig:keystroke_data_splitter_class_last} pav.).
+Klasė \texttt{KeystrokeDataSplitter} iš pradinio CMU CSV failo paruošia \textit{train}, \textit{validation} ir \textit{test} aibes: pasirenka subjektus, normalizuoja požymius ir grupuotai padalija duomenis (žr.~\ref{fig:keystroke_data_splitter_class_first} ir \ref{fig:keystroke_data_splitter_class_last} pav.).
 
 \begin{figure}[H]
     \centering
@@ -22,7 +22,7 @@ Klasės veikimo žingsniai:
     \item Iš pradinio CSV nuskaitomos $20\,400$ eilučių; paliekama tik viena sesija (\texttt{sessionIndex}~$=1$).
     \item Iš likusių dalyvių pagal abėcėlę atrenkami pirmieji $30$ subjektai – gauname $30$ klasių klasifikavimo užduotį su $1\,500$ įrašų.
     \item Visi $31$ laikinis požymis normalizuojami min-max metodu į $[0,\,1]$. \texttt{EPSILON}~$=10^{-8}$ apsaugo nuo dalybos iš nulio, jei stulpelio reikšmės sutampa.
-    \item Atliekamas dvigubas stratifikuotas dalijimas (\texttt{stratify=y}): pirmas – $80\ \%$ \textit{train+val} ir $20\ \%$ \textit{test}; antras – iš \textit{train+val} aibės dar $80\,\%$ / $20\,\%$ į \textit{train} ir \textit{validation}. Bendras santykis – $64{:}16{:}20$.
+    \item Atliekamas dvigubas grupuotas dalijimas (\texttt{stratify=y}): pirmas – $80\ \%$ \textit{train+val} ir $20\ \%$ \textit{test}; antras – iš \textit{train+val} aibės dar $80\,\%$ / $20\,\%$ į \textit{train} ir \textit{validation}. Bendras santykis – $64{:}16{:}20$.
     \item Trys gautos aibės įrašomos į atskirus CSV failus, iš kurių vėliau \texttt{KeystrokeDataReader} užkrauna duomenis į \texttt{KeystrokeDataset}.
 \end{enumerate}
 
