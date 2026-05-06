@@ -1,0 +1,13 @@
+\subsubsection{Aktyvacijos funkcija}
+\label{subsubsec:aktyvacijos_funkcija}
+
+Aktyvacijos funkcija (angl.~\textit{activation function}) įveda netiesiškumą po kiekvieno konvoliucinio ar pilnai sujungto sluoksnio. Be aktyvacijos funkcijos kelių tiesinių sluoksnių kompozicija liktų tiesinė transformacija ir tinklas negalėtų išmokti sudėtingų šablonų. Projekte naudojamos keturios aktyvacijos funkcijos:
+
+\begin{itemize}
+    \item \textbf{ReLU} (angl.~\textit{Rectified Linear Unit}) – $f(x) = \max(0,\, x)$. Paprasčiausia ir dažniausiai naudojama aktyvacijos funkcija. Neigiamos reikšmės nulinamos, teigiamos paliekamos nepakeistos. Trūkumas – „mirštančių neuronų" problema: jei neuronas visada gauna neigiamą įėjimą, jo gradientas tampa $0$ ir jis nustoja mokytis.
+    \item \textbf{LeakyReLU} – $f(x) = \max(\alpha x,\, x)$, kur $\alpha = 0{,}01$. Sprendžia „mirštančių neuronų" problemą, nes neigiamoms reikšmėms suteikiamas mažas nuolydis ($\alpha$), užtikrinantis, kad gradientas niekada netaptų visiškai nuliniu.
+    \item \textbf{Tanh} – $f(x) = \tanh(x)$, reikšmės perkeliamos į intervalą $[-1,\, 1]$. Funkcija yra glodi ir simetriška, tačiau kraštuose prisotina (angl.~\textit{saturates}) – gradientai tampa labai maži, kas lėtina mokymąsi.
+    \item \textbf{ELU} (angl.~\textit{Exponential Linear Unit}) – $f(x) = x$, kai $x > 0$, ir $f(x) = \alpha (\ee^{x} - 1)$, kai $x \leq 0$. Neigiamoje dalyje funkcija yra glodi, todėl gradientai geriau sklidžia nei su ReLU.
+\end{itemize}
+
+Bazinėje konfigūracijoje naudojama \textbf{ReLU}, o likusiomis funkcijomis tiriama aktyvacijos įtaka modelio tikslumui.

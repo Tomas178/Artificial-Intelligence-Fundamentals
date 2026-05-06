@@ -1,0 +1,18 @@
+\subsubsection{Telkimo sluoksnis}
+\label{subsubsec:telkimo_sluoksnis}
+
+Telkimo sluoksnis (angl.~\textit{pooling layer}) mažina požymių žemėlapio erdvinius matmenis, pasilikdamas svarbiausią informaciją. Projekte naudojamas \textbf{maksimalusis telkimas} (angl.~\textit{max pooling}) – iš kiekvieno telkimo lango pasirenkama didžiausia reikšmė:
+
+\begin{itemize}
+    \item \texttt{MaxPool2d} – vaizdams. Stumiamas $2 \times 2$ langas, kuris kiekvienoje pozicijoje iš keturių reikšmių pasirenka didžiausią. Po kiekvieno telkimo sluoksnio vaizdo kraštinė sumažėja dvigubai.
+    \item \texttt{MaxPool1d} – laiko eilutėms. Stumiamas $2$ dydžio langas, kuris iš dviejų gretimų reikšmių pasirenka didžiausią. Po kiekvieno telkimo sluoksnio sekos ilgis sumažėja dvigubai.
+\end{itemize}
+
+Telkimo sluoksnis atlieka tris funkcijas:
+\begin{enumerate}
+    \item \textbf{Sumažina skaičiavimų apimtį} – mažesni požymių žemėlapiai reiškia mažiau parametrų tolesniuose sluoksniuose.
+    \item \textbf{Suteikia transliacijos invariantiškumą} (angl.~\textit{translation invariance}) – nedidelis šablono pasislinkimas neturi didelės įtakos telkimo rezultatui.
+    \item \textbf{Didina receptyvų lauką} (angl.~\textit{receptive field}) – kiekvienas neuronas gilesnėse pakopose „mato" didesnę pradinių duomenų sritį.
+\end{enumerate}
+
+Projekte visuose telkimo sluoksniuose naudojamas telkimo dydis $2$.

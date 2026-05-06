@@ -1,0 +1,19 @@
+\subsubsection{Paketinis normalizavimas}
+\label{subsubsec:paketinis_normalizavimas}
+
+Paketinio normalizavimo sluoksnis (angl.~\textit{batch normalization}) normalizuoja kiekvieno mini paketo (angl.~\textit{mini-batch}) aktyvacijas taip, kad jų vidurkis būtų artimas $0$, o standartinis nuokrypis – artimas $1$. Po normalizavimo taikoma afininė transformacija su mokomais parametrais $\gamma$ (mastelis) ir $\beta$ (poslinkis), leidžiančiais tinklui išlaikyti reikiamą aktyvacijų pasiskirstymą.
+
+Projekte naudojami du paketinio normalizavimo variantai:
+\begin{itemize}
+    \item \texttt{BatchNorm2d} – vaizdams. Normalizuoja kiekvieną požymių žemėlapį (kanalą) atskirai per visą mini paketą.
+    \item \texttt{BatchNorm1d} – laiko eilutėms. Normalizuoja kiekvieną kanalą per sekos matmenį ir mini paketą.
+\end{itemize}
+
+Paketinis normalizavimas teikia tris pagrindinius privalumus:
+\begin{enumerate}
+    \item \textbf{Stabilizuoja mokymą} – mažina vidinį kovariatinį poslinkį (angl.~\textit{internal covariate shift}), todėl tinklas greičiau konverguoja.
+    \item \textbf{Leidžia naudoti didesnį mokymosi greitį} – normalizuotos aktyvacijos sumažina gradientų sproginėjimo (angl.~\textit{exploding gradients}) riziką.
+    \item \textbf{Švelnus reguliarizacijos efektas} – mini paketo statistikų naudojimas įneša šiek tiek triukšmo, kas veikia panašiai kaip papildoma reguliarizacija.
+\end{enumerate}
+
+Bazinėje konfigūracijoje paketinis normalizavimas yra \textbf{išjungtas}, o jo įtaka tiriama atskirame tyrime.

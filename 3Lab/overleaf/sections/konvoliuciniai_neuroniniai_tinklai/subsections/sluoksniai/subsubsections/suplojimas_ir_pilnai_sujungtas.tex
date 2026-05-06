@@ -1,0 +1,18 @@
+\subsubsection{Suplojimo ir pilnai sujungti sluoksniai}
+\label{subsubsec:suplojimas_ir_pilnai_sujungtas}
+
+\paragraph{Suplojimo sluoksnis.}
+\texttt{Flatten} sluoksnis pertvarko daugiamačius požymių žemėlapius į vienmatį vektorių. Jis yra tiltas tarp konvoliucinės dalies (požymių išskyrimo) ir klasifikatoriaus (pilnai sujungtų sluoksnių). Sluoksnis neturi mokomų parametrų – jis tik pertvarko tensoriaus formą:
+\begin{itemize}
+    \item Vaizdų tinkle: $(128,\, 8,\, 8) \to (8192)$ – $128$ kanalų po $8 \times 8$ pikselių suplojama į vieną $8192$ ilgio vektorių.
+    \item Laiko eilučių tinkle: $(128,\, 7) \to (896)$ – $128$ kanalų po $7$ laiko žingsnius suplojama į vieną $896$ ilgio vektorių.
+\end{itemize}
+
+\paragraph{Pilnai sujungtas sluoksnis.}
+Pilnai sujungtas sluoksnis (angl.~\textit{fully connected layer}, \texttt{Linear}) sujungia kiekvieną įėjimo neuroną su kiekvienu išėjimo neuronu per mokomus svorius ir poslinkius. Projekte klasifikatorių sudaro du tokie sluoksniai:
+\begin{enumerate}
+    \item \textbf{Paslėptasis sluoksnis} – mažina suploto vektoriaus dimensiją iki \texttt{classifier\_hidden\_size} ($256$ vaizdų tinkle, $128$ laiko eilučių tinkle). Po jo taikoma aktyvacijos funkcija ir \textit{Dropout}.
+    \item \textbf{Išėjimo sluoksnis} – turi tiek neuronų, kiek yra klasių ($2$ vaizdų tinkle, $30$ laiko eilučių tinkle). Kiekvienas neuronas išveda neapdorotą balą (angl.~\textit{logit}) atitinkamai klasei. Didžiausią balą turinčios klasės indeksas laikomas modelio spėjimu.
+\end{enumerate}
+
+Išėjimo sluoksnis nenaudoja aktyvacijos funkcijos, nes \texttt{CrossEntropyLoss} paklaidos funkcija viduje taiko \textit{Softmax} transformaciją, kuri paverčia neapdorotus balus į tikimybių pasiskirstymą.

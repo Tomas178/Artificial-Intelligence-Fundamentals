@@ -1,0 +1,14 @@
+\subsubsection{Konvoliucinis sluoksnis}
+\label{subsubsec:konvoliucinis_sluoksnis}
+
+Konvoliucinis sluoksnis (angl.~\textit{convolutional layer}) yra pagrindinis CNN požymių išskyrimo elementas. Jo veikimo principas – nedidelis filtras (branduolys, angl.~\textit{kernel}) stumiamas per įėjimo duomenis ir kiekvienoje pozicijoje apskaičiuojama skaliarinė sandauga tarp filtro svorių ir atitinkamo įėjimo fragmento. Rezultatas – požymių žemėlapis (angl.~\textit{feature map}), rodantis, kur aptiktas filtro ieškomas šablonas.
+
+Projekte naudojami du konvoliucijų tipai:
+\begin{itemize}
+    \item \texttt{Conv2d} – 2D konvoliucija vaizdams. Filtras stumiamas dviem kryptimis (aukštis ir plotis). Pvz., $3 \times 3$ dydžio branduolys nuskaito vaizdo sritį po $9$ pikselius ir aptinka erdvinius šablonus – kraštus, tekstūras, formas.
+    \item \texttt{Conv1d} – 1D konvoliucija laiko eilutėms. Filtras stumiamas viena kryptimi (sekos ašimi). Projekte jis slenka per $31$ klaviatūros laikinius požymius ir aptinka lokalinius laikinus šablonus.
+\end{itemize}
+
+Svarbi konvoliucijų savybė – \textbf{svorių dalinimasis} (angl.~\textit{weight sharing}): tas pats filtras taikomas visose įėjimo pozicijose. Dėl to konvoliucinis sluoksnis turi žymiai mažiau parametrų nei pilnai sujungtas sluoksnis ir geba aptikti šablonus nepriklausomai nuo jų vietos įėjimo duomenyse. Kiekvienas filtras sukuria vieną požymių žemėlapį, todėl filtrų skaičius lemia išėjimo kanalų skaičių.
+
+Projekte visuose konvoliuciniuose sluoksniuose naudojamas branduolio dydis $3$ ir \texttt{padding}~$= 1$, todėl erdviniai matmenys po konvoliucijos išlieka nepakitę – juos mažina tik telkimo sluoksniai.
