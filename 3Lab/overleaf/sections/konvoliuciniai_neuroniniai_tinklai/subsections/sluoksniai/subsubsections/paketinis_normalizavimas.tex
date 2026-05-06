@@ -1,7 +1,7 @@
 \subsubsection{Paketinis normalizavimas}
 \label{subsubsec:paketinis_normalizavimas}
 
-Paketinio normalizavimo sluoksnis (angl.~\textit{batch normalization}) normalizuoja kiekvieno mini paketo (angl.~\textit{mini-batch}) aktyvacijas taip, kad jų vidurkis būtų artimas $0$, o standartinis nuokrypis – artimas $1$. Po normalizavimo taikoma afininė transformacija su mokomais parametrais $\gamma$ (mastelis) ir $\beta$ (poslinkis), leidžiančiais tinklui išlaikyti reikiamą aktyvacijų pasiskirstymą.
+Paketinio normalizavimo sluoksnis (angl.~\textit{batch normalization}) normalizuoja kiekvieno mini paketo (angl.~\textit{mini-batch}) aktyvacijas taip, kad jų vidurkis būtų artimas $0$, o standartinis nuokrypis – artimas $1$. Po normalizavimo kiekviena reikšmė koreguojama pagal du mokomus parametrus – dauginama iš $\gamma$ (mastelis) ir pridedama $\beta$ (poslinkis): $y = \gamma \cdot \hat{x} + \beta$. Šiuos parametrus tinklas išmoksta pats mokymo metu, todėl gali koreguoti aktyvacijų pasiskirstymą pagal poreikį.
 
 Projekte naudojami du paketinio normalizavimo variantai:
 \begin{itemize}
