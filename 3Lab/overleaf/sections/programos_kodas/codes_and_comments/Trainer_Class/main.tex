@@ -48,11 +48,9 @@ Klasės atsakomybės:
     \item \texttt{plot\_history}, \texttt{plot\_confusion\_matrix}, \texttt{plot\_comparison} – \texttt{matplotlib} ir \texttt{seaborn} grafikai eksperimentų vizualizavimui.
 \end{itemize}
 
-Mokymo metu naudojamas:
+Mokymo metu naudojama:
 \begin{itemize}
     \item \textbf{Paklaidos funkcija} \texttt{nn.CrossEntropyLoss} – matuoja, kaip toli tinklo \textit{logits} nuo tikrų klasių (žemo tikslumo prognozės baudžiamos labiau).
     \item \textbf{Optimizatorius} – konfigūruojamas per \texttt{Optimizer} enumeraciją (\textit{Adam} pagal nutylėjimą).
-    \item \textbf{Tikslumo skaičiavimas} – \texttt{outputs.max(1)} grąžina kiekvienai eilutei didžiausios \textit{logit} reikšmės indeksą; lyginama su tikra klase.
+    \item \textbf{Tikslumo skaičiavimas} – \texttt{outputs.max(1)} grąžina kiekvienai eilutei didžiausios \textit{logit} reikšmės indeksą lyginama su tikra klase.
 \end{itemize}
-
-Klasės architektūra ir mokymo ciklas suprogramuoti autoriaus. \texttt{matplotlib} / \texttt{seaborn} grafikų braižymo metodų \texttt{plot\_history}, \texttt{plot\_confusion\_matrix} ir \texttt{plot\_comparison} kvietimo šablonams panaudotos Claude pasiūlytos paruoštos formos, kurios vėliau pritaikytos prie projekto poreikių.

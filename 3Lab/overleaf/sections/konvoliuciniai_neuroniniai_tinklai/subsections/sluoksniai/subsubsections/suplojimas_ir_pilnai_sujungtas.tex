@@ -13,4 +13,4 @@
     \item \textbf{Išėjimo sluoksnis} – turi tiek neuronų, kiek yra klasių ($2$ vaizdų tinkle, $30$ laiko eilučių tinkle). Kiekvienas neuronas išveda neapdorotą balą (angl.~\textit{logit}) atitinkamai klasei. Didžiausią balą turinčios klasės indeksas laikomas modelio spėjimu.
 \end{enumerate}
 
-Išėjimo sluoksnis nenaudoja aktyvacijos funkcijos, nes \texttt{CrossEntropyLoss} paklaidos funkcija viduje taiko \textit{Softmax} transformaciją, kuri paverčia neapdorotus balus į tikimybių pasiskirstymą.
+Išėjimo sluoksnis taiko \textit{Softmax} funkciją, kuri paverčia neapdorotus balus į tikimybių pasiskirstymą.
