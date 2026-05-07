@@ -1,0 +1,15 @@
+\begin{table}[H]
+    \centering
+    \caption{Tyrimuose varijuojami hiperparametrai ir jų reikšmės.}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        Tyrimas & Vaizdų variantai & Laiko eilučių variantai \\
+        \hline
+        Architektūra (filtrai) & $(16,\,32)$; $(32,\,64,\,128)$; $(64,\,128,\,256)$ & $(32)$; $(64,\,128)$; $(64,\,128,\,256)$ \\ \hline
+        \textit{Dropout} tikimybė & \multicolumn{2}{c|}{$0{,}0$; $0{,}25$; $0{,}5$; $0{,}75$} \\ \hline
+        Paketinis normalizavimas & \multicolumn{2}{c|}{išjungta; įjungta} \\ \hline
+        Aktyvacijos funkcija & \multicolumn{2}{c|}{\textit{ReLU}, \textit{LeakyReLU}, \textit{Tanh}, \textit{ELU}} \\ \hline
+        Optimizavimo algoritmas & \multicolumn{2}{c|}{\textit{Adam}, \textit{SGD}, \textit{RMSprop}, \textit{AdamW}} \\ \hline
+    \end{tabular}
+    \label{tab:hiperparametrai_tyrimai}
+\end{table}

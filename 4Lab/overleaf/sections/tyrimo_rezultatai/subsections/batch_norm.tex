@@ -1,0 +1,27 @@
+\subsection{Paketinio normalizavimo įtaka}
+\label{subsec:rez_batch_norm}
+
+Lyginamos dvi konfigūracijos – tinklas su paketinio normalizavimo (\textit{batch normalization}, BN) sluoksniais ir be jų. Rezultatai pateikti~\ref{tab:rez_batch_norm} lentelėje, validavimo metrikos – \ref{fig:rez_batch_norm_image} ir~\ref{fig:rez_batch_norm_keystroke} pav.
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/tables/batch_norm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/batch_norm/img_comparison.png}
+    \caption{Paketinio normalizavimo tyrimas – vaizdų užduotis}
+    \label{fig:rez_batch_norm_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{3Lab/results/batch_norm/ks_comparison.png}
+    \caption{Paketinio normalizavimo tyrimas – laiko eilučių užduotis}
+    \label{fig:rez_batch_norm_keystroke}
+\end{figure}
+
+Pastebimi rezultatai:
+\begin{itemize}
+    \item BN sluoksniai \textbf{ryškiai pagerino abu modelius}: vaizdų \texttt{val\_acc} pakilo nuo $0{,}8360$ iki $0{,}8942$, laiko eilučių – nuo $0{,}6750$ iki $0{,}9167$.
+    \item Validavimo paklaida sumažėjo apie $2 \times$, o validavimo tikslumas svyruoja gerokai mažiau – BN stabilizuoja mokymo procesą.
+    \item Iš visų penkių tyrimų \textbf{BN konfigūracija} pasirodė geriausiai abiem užduotims, todėl ji parinkta galutiniam modelio įvertinimui (\ref{sec:geriausias_modelis} sk.).
+\end{itemize}

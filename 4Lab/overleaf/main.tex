@@ -1,0 +1,67 @@
+\documentclass[]{VUMIFTemplateClass}
+
+\usepackage{indentfirst}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+\usepackage{color,algorithm,algorithmic}
+\usepackage[nottoc]{tocbibind}
+\usepackage{tocloft}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\makeatletter
+\renewcommand{\fnum@algorithm}{\thealgorithm}
+\makeatother
+\renewcommand\thealgorithm{\arabic{algorithm} algoritmas}
+
+\bibliography{bibliografija}
+
+% Author's MACROS
+\newcommand{\EE}{\mathbb{E}\,}
+\newcommand{\ee}{{\mathrm e}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+\studijuprograma{Informacinių sistemų inžinerijos}
+\darbotipas{Laboratorinis darbas}
+\darbopavadinimas{Išmokyti daugiasluoksnį perceptroną teisingai klasifikuoti duomenis naudojant sistemą KNIME.}
+\darbopavadinimasantras{Train multilayer perceptron to correctly classify data using the KNIME framework.}
+\autorius{Tomas Petronis}
+
+\vadovas{dr. Viktor Medvedev}
+
+\begin{document}
+\selectlanguage{lithuanian}
+
+\onehalfspacing
+\input{sections/titulinis}
+
+\tableofcontents
+\onehalfspacing
+
+\input{sections/uzduoties_tikslas}
+\input{sections/duomenys/main}
+\input{sections/konvoliuciniai_neuroniniai_tinklai/main}
+\input{sections/duomenu_paruosimas/main}
+\input{sections/laptop_characteristics/main}
+\input{sections/programos_kodas/main}
+\input{sections/tyrimo_rezultatai/main}
+\input{sections/geriausias_modelis/main}
+\input{sections/pavyzdziu_klasifikacija/main}
+\input{sections/isvados}
+
+
+\singlespacing
+
+\printbibliography[title = {Šaltiniai}]
+\end{document}

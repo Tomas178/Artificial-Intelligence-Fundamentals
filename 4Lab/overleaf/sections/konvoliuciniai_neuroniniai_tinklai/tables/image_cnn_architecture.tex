@@ -1,0 +1,25 @@
+\begin{table}[H]
+    \centering
+    \caption{Vaizdų klasifikavimo tinklo (\texttt{ImageCNN}) bazinės architektūros sluoksniai.}
+    \begin{tabular}{|c|l|l|}
+        \hline
+        Nr. & Sluoksnis & Parametrai / išėjimas \\
+        \hline
+        $0$ & Įėjimas & $3 \times 64 \times 64$ \\ \hline
+        $1$ & \texttt{Conv2d} & $3 \to 32$, branduolys $3$, \texttt{padding}~$=1$ \\ \hline
+        $2$ & \texttt{ReLU} & – \\ \hline
+        $3$ & \texttt{MaxPool2d} & dydis $2$, išėjimas $32 \times 32 \times 32$ \\ \hline
+        $4$ & \texttt{Conv2d} & $32 \to 64$, branduolys $3$, \texttt{padding}~$=1$ \\ \hline
+        $5$ & \texttt{ReLU} & – \\ \hline
+        $6$ & \texttt{MaxPool2d} & dydis $2$, išėjimas $64 \times 16 \times 16$ \\ \hline
+        $7$ & \texttt{Conv2d} & $64 \to 128$, branduolys $3$, \texttt{padding}~$=1$ \\ \hline
+        $8$ & \texttt{ReLU} & – \\ \hline
+        $9$ & \texttt{MaxPool2d} & dydis $2$, išėjimas $128 \times 8 \times 8$ \\ \hline
+        $10$ & \texttt{Flatten} & $8192$ \\ \hline
+        $11$ & \texttt{Linear} & $8192 \to 256$ \\ \hline
+        $12$ & \texttt{ReLU} & – \\ \hline
+        $13$ & \texttt{Dropout} & $p = 0{,}0$ (bazinė) \\ \hline
+        $14$ & \texttt{Linear} & $256 \to 2$ \\ \hline
+    \end{tabular}
+    \label{tab:image_cnn_architecture}
+\end{table}

@@ -1,0 +1,24 @@
+\section{Tyrimo rezultatai}
+\label{sec:tyrimo_rezultatai}
+
+Šiame skyriuje pateikiami 5 tyrimai:
+\begin{itemize}
+    \item Architektūros~\ref{subsec:rez_architektura},
+    \item \textit{Dropout} tikimybės~\ref{subsec:rez_dropout},
+    \item Paketinio normalizavimo~\ref{subsec:rez_batch_norm},
+    \item Aktyvacijos funkcijos~\ref{subsec:rez_aktyvacija},
+    \item Optimizavimo algoritmo įtaka mokymo bei validavimo metrikoms~\ref{subsec:rez_optimizatorius}.
+\end{itemize}
+   Visiems tyrimams naudojama:
+\begin{itemize}
+    \item Vaizdams – \texttt{subset\_ratio}~$=0{,}2$ ($1182$ vaizdų), nes turėti skaičiavimų resursai yra nedideli.
+    \item Laiko eilutėms – pilna $1500$ įrašų aibė ($30$ klasių, $50$ įrašų klasei).
+    \item Kiekvienas eksperimentas mokomas $20$ epochų su \texttt{batch\_size}~$=64$, \texttt{learning\_rate}~$=10^{-3}$.
+    \item Kiekvienoje lentelėje pateikiami: geriausios epochos validavimo tikslumas (\texttt{val\_acc}) ir paklaida (\texttt{val\_loss}) bei testavimo tikslumas (\texttt{test\_acc}). Geriausias kiekvieno tyrimo variantas paryškintas.
+\end{itemize}
+
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/subsections/architektura}
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/subsections/dropout}
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/subsections/batch_norm}
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/subsections/aktyvacija}
+\input{3Lab/overleaf/sections/tyrimo_rezultatai/subsections/optimizatorius}

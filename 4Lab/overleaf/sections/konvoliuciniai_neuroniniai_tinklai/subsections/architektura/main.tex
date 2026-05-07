@@ -1,0 +1,11 @@
+\subsection{Architektūra}
+\label{subsec:architektura}
+
+Abu tinklai sukonstruoti pagal vienodą šabloną, įgyvendintą bazinėje klasėje \texttt{BaseCNN}. Tinklą sudaro dvi dalys:
+\begin{itemize}
+    \item \textbf{Požymių išskyrimo blokas} (angl.~\textit{feature extractor}) – kelios konvoliucinių blokų pakopos. Kiekvieną pakopą sudaro: konvoliucinis sluoksnis (\texttt{padding}~$=1$), pasirinktinai paketinio normalizavimo sluoksnis, aktyvacijos funkcija, telkimo sluoksnis ir pasirinktinai \textit{Dropout} sluoksnis.
+    \item \textbf{Klasifikatorius} – \texttt{Flatten} sluoksnis, paslėptas pilnai sujungtas (angl.~\textit{fully connected}) sluoksnis, aktyvacijos funkcija, \textit{Dropout} sluoksnis ir išėjimo pilnai sujungtas sluoksnis su tiek neuronų, kiek yra klasių.
+\end{itemize}
+
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/subsections/architektura/subsubsections/image_cnn}
+\input{3Lab/overleaf/sections/konvoliuciniai_neuroniniai_tinklai/subsections/architektura/subsubsections/keystroke_cnn}

@@ -1,0 +1,14 @@
+\begin{table}[H]
+    \centering
+    \caption{CMU Keystroke duomenų aibės stulpelių aprašymas.}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        Stulpelis & Aprašymas & Reikšmių tipas / intervalas \\
+        \hline
+        \textit{subject} & Subjekto identifikatorius & Tekstinis (pvz., \texttt{s008}) \\ \hline
+        \texttt{H.\textit{key}} & Klavišo laikymo trukmė & Realusis sk., $\geq 0$ (s) \\ \hline
+        \texttt{DD.\textit{key1}.\textit{key2}} & Laikas tarp dviejų paspaudimų & Realusis sk., $\geq 0$ (s) \\ \hline
+        \texttt{UD.\textit{key1}.\textit{key2}} & Laikas nuo atleidimo iki paspaudimo & Realusis sk., $\in \mathbb{R}$ (s) \\ \hline
+    \end{tabular}
+    \label{tab:keystroke_stulpeliu_aprasymas}
+\end{table}

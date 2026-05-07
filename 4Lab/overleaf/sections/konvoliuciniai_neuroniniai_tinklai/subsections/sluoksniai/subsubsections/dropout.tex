@@ -1,0 +1,14 @@
+\subsubsection{Dropout sluoksnis}
+\label{subsubsec:dropout_sluoksnis}
+
+\textit{Dropout} sluoksnis yra reguliarizacijos technika, kuri mokymo metu atsitiktinai „išjungia" dalį neuronų su tikimybe~$p$, nustatydama jų aktyvacijas lygias nuliui. Tai priverčia tinklą mokytis perteklinių reprezentacijų ir nesusieti klasifikavimo tik su konkrečiais neuronais, todėl sumažėja persimokimo (angl.~\textit{overfitting}) rizika.
+
+Projekte naudojami du \textit{Dropout} variantai:
+\begin{itemize}
+    \item \texttt{Dropout2d} – vaizdų tinkle (\texttt{ImageCNN}). Užuot išjungęs atskirus neuronus, išjungia visą požymių žemėlapį (kanalą). Tai efektyviau konvoliuciniams sluoksniams, nes gretimi pikseliai yra stipriai koreliuoti.
+    \item \texttt{Dropout} – laiko eilučių tinkle (\texttt{KeystrokeCNN}) ir abiejų tinklų klasifikatoriuje. Atsitiktinai išjungia atskirus neuronus.
+\end{itemize}
+
+Testavimo ir validavimo metu \textit{Dropout} yra automatiškai išjungiamas (aktyvuojamas tik \texttt{model.train()} režimu), o aktyvacijos yra atitinkamai mastelizuojamos, kad išėjimo reikšmių vidurkis sutaptų su mokymo metu gautu vidurkiu.
+
+Bazinėje konfigūracijoje \textit{Dropout} tikimybė yra $p = 0{,}0$ (t.\,y. \textit{Dropout} neveikia), o skirtingos tikimybės ($0{,}25$; $0{,}5$; $0{,}75$) tiriamos atskirame tyrime.
