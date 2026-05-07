@@ -482,7 +482,7 @@ def main():
 	_print_leaderboard('Image', image_outcomes)
 	_print_leaderboard('Keystroke', keystroke_outcomes)
 
-	image_eval_loaders = load_image_data(subset_ratio=IMAGE_EVAL_SUBSET_RATIO)
+	image_eval_loaders = load_image_data()
 	run_best_model_evaluation(
 		image_outcomes,
 		keystroke_outcomes,
