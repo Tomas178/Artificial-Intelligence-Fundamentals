@@ -3,5 +3,11 @@
 
 Žemiau pateikiamos laboratorinio darbo išvados:
 \begin{itemize}
-    \item 1.
+    \item Daugiasluoksnis perceptronas sėkmingai apmokytas klasifikuoti \textit{Iris} duomenis. Mokymo metu pasiektas $99{,}2\ \%$ tikslumas (iš $120$ įrašų tik $1$ buvo suklasifikuotas neteisingai).
+    \item Testavimo metu modelis pasiekė $96{,}7\ \%$ tikslumą – iš 30 testavimo įrašų tik 1 \textit{Iris-virginica} buvo klaidingai priskirtas \textit{Iris-versicolor} klasei (žr. \ref{tab:klasifikavimo_tikimybes} lentelę).
+    \item \textit{Iris-setosa} klasė visais atvejais buvo klasifikuojama be klaidų – tai rodo, kad ši klasė yra aiškiai atskirta nuo kitų dviejų požymių erdvėje.
+    \item Didžiausias klasifikavimo sunkumas kyla tarp \textit{Iris-versicolor} ir \textit{Iris-virginica} klasių, nes jų požymių reikšmės iš dalies persidengia (tai patvirtina ir taškinių diagramų matricos).
+    \item Atlikus hiperparametrų paiešką su 5 skirtingais rinkiniais, optimaliausiu pripažintas rinkinys nr.~5 ($50$ iteracijų, $1$ paslėptas sluoksnis, $20$ neuronų), kuris pasiekė tokį patį tikslumą kaip bazinis modelis, bet su mažesniu iteracijų skaičiumi.
+    \item Palyginus su kitais metodais, MLP su optimaliausiais hiperparametrais ($96{,}7\ \%$) klasifikavo geriau nei sprendimų medis ir atsitiktinis miškas (abu pasiekė $90\ \%$ tikslumą, klaidingai klasifikuodami po 3 \textit{Iris-virginica} įrašus).
+    \item Paklaidos kitimo grafikas parodė, kad modelis konverguoja greitai ir nuo $\sim$50 epochos paklaida praktiškai nebesikeičia, todėl naudoti daugiau iteracijų nėra būtina.
 \end{itemize}
