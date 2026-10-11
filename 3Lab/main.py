@@ -319,10 +319,13 @@ def run_activation_experiments(image_loaders, keystrokes_loaders, device):
 
 # Tyrimas 5: Optimizavimo algoritmai
 def run_optimizer_experiments(image_loaders, keystrokes_loaders, device):
+	image_prototype = ImageCNN(num_classes=IMAGE_NUM_CLASSES)
+	keystroke_prototype = KeystrokeCNN(num_classes=KEYSTROKE_NUM_CLASSES)
+
 	image_specs = [
 		(
 			str(optimizer),
-			lambda: ImageCNN(num_classes=IMAGE_NUM_CLASSES),
+			image_prototype.clone,
 			{'optimizer': optimizer},
 		)
 		for optimizer in Optimizer
@@ -330,7 +333,7 @@ def run_optimizer_experiments(image_loaders, keystrokes_loaders, device):
 	keystroke_specs = [
 		(
 			str(optimizer),
-			lambda: KeystrokeCNN(num_classes=KEYSTROKE_NUM_CLASSES),
+			keystroke_prototype.clone,
 			{'optimizer': optimizer},
 		)
 		for optimizer in Optimizer

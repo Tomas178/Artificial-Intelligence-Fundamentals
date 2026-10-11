@@ -1,3 +1,5 @@
+import copy
+
 import torch.nn as nn
 
 from Models.consts import ACTIVATION_LAYERS
@@ -61,3 +63,6 @@ class BaseCNN(nn.Module):
 		x = self.feature_extractor(x)
 		x = self.classifier(x)
 		return x
+
+	def clone(self):
+		return copy.deepcopy(self)
